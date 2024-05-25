@@ -1,10 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-:root{
-    --gris-principal-fondo:rgba(99, 99, 99, 0.5);
+:root{ 
+    --gris-principal:#131524;
     --blanco-principal: rgb(255, 255, 255);
-    --gradiente: linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
+    --gradiente-fondo: linear-gradient(90deg, hsla(211, 36%, 46%, 1) 0%,  hsla(208, 33%, 21%, 1) 100%);
+    --gradiente-icon: linear-gradient(90deg, hsla(192, 95%, 50%, 1) 0%, hsla(225, 89%, 47%, 1) 100%);
     --fuente-principal: "Outfit", sans-serif;
 }
 
@@ -24,14 +25,14 @@ ul {
 .fondo {
     width: 100%;
     height: 100vh;
-    background: var(--gradiente);
+    background: var(--gradiente-fondo);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .contenedor{
-    background-color: var(--gris-principal-fondo);
+    background-color: var(--gris-principal);
     backdrop-filter: blur(20px);
     width: 400px;
     height: 400px;
@@ -77,7 +78,7 @@ ul {
 
 .formulario-name{
     position: relative;
-    color: var(--blanco-principal);
+    color: var(--blanco-principal); 
     top: 42%;
     left: 15px;
     transform: translateY(-40%);
@@ -91,13 +92,15 @@ ul {
 
 .formulario-box input:focus ~ label,
 .formulario-box input:valid ~ label {
-  top: -20px;
+  top: -22px;
 }
 
 
 .icon{
     position: absolute;
-    color: var(--blanco-principal);
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
     top: 20%;
     right: 20px;
     font-size: 1.5rem;
@@ -106,7 +109,9 @@ ul {
 .saludo{
     font-family: var(--fuente-principal);
     font-weight: 600;
-    color: var(--blanco-principal);
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
 }
 
 .boton{
@@ -133,4 +138,7 @@ ul {
     margin-right:10px ;
     text-align: center;
     margin-top: 8px;
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
 }
