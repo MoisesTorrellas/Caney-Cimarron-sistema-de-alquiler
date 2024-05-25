@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+    --gris-principal:rgba(190, 190, 190, 0.5);
+    --blanco-principal: rgb(255, 255, 255);
+    --gradiente: linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
+
+    --fuente-principal: "Outfit", sans-serif;
+}
+
+.conteinerPadre{
+    display: flex;
+    background: var(--gradiente)
+}
+.conteinerHijo{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+.content{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(100vh - 50px);
+    width: calc(100vw - 250px);
+}

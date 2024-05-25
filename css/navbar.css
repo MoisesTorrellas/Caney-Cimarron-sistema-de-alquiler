@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.contenedorNav{
+    display: flex;
+}
+
+.barraLateral{
+    background: var(--gris-principal-fondo);
+    color: var(--blanco-principal);
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: star;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.barraSuperior{
+    width: calc(100vw - 250px);
+    background-color: var(--gris-principal-fondo);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.barraSuperior a{
+    color: var(--blanco-principal);
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0 30px;
+}
+
+.conteiner-logo{
+    padding: 20px;
+}
+
+.logoNav{
+    width: 140px;
+    border-radius: 10px;
+}
+
+.nav-conteiner{
+    width: 100%;
+    height: 100%;
+}
+
+.nav-padre{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.botonNav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.botonNav > a{
+    color: var(--blanco-principal);
+    display: block;
+    width: 230px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+    margin-bottom: 15px;
+    font-family: var(--fuente-principal);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: .3s ease;
+}
+
+.nav-hijo{
+    position: relative;
+    width: 100%;
+    height: 0px;
+    margin-top: -15px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    z-index: 1;
+    margin-bottom: 15px;
+}
+
+.botonNav:hover .nav-hijo{
+    height: 65px;
+}
+
+.boton-nav-hijo{
+ width: 210px;
+ padding: 0px 0px 0px 20px ;
+}
+
+.boton-nav-hijo a{
+    color: var(--blanco-principal);
+    display: block;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0px 5px 0px 5px;
+    font-family: var(--fuente-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: .3s ease;
+}
+
+.boton-nav-hijo a:hover{
+    text-shadow: 0px 0px 13px rgb(255, 255, 255);
+}
+
+.botonNav a i{
+    margin-right: 10px;
+}
+
+.botonNavUsuario a{
+    border: 3px solid var(--blanco-principal);
+    margin-top: 10px;
+}
+
+.botonNav > a:hover , .out:hover{
+    text-shadow: 0px 0px 13px rgb(255, 255, 255);
+}
+
+.botonNavUsuario > a:hover{
+    box-shadow: 0px 0px 18px 5px rgba(255,255,255,0.65);
+    text-shadow: none;
+}
+
+
+
+
