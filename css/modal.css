@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+    --gris-principal:#131524;
+    --blanco-principal: rgb(255, 255, 255);
+    --gradiente-fondo: linear-gradient(90deg, hsla(211, 36%, 46%, 1) 0%,  hsla(208, 33%, 21%, 1) 100%);
+    --gradiente-icon: linear-gradient(90deg, hsla(192, 95%, 50%, 1) 0%, hsla(225, 89%, 47%, 1) 100%);
+    --fuente-principal: "Outfit", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modal-contenedor{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.modal{
+    width: 80%;
+    height: 500px;
+    background: var(--gris-principal);
+    text-align: center;
+    display: block;
+    position: relative;
+    transition: transform .3s;
+    transform: translateY(-0%);
+    border-radius: 10px;
+}
+.modal-close{
+    transform: translateY(-200%);
+}
+
+.contentModal{
+    width: 100%;
+    height: 100%;
+   
+}
+
+.headerModal{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #2c2c2c;
+}
+
+.titleModal{
+    color: var(--blanco-principal);
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+    margin-left: 50px;
+    font-size: 2rem;
+}
+
+.titleModal span{
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
+}
+
+.closes{
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+    margin-right: 50px;
+    font-size: 2rem;
+    border: none;
+}
+.closes:hover{
+    text-shadow: 0px 0px 13px rgb(255, 255, 255);
+}

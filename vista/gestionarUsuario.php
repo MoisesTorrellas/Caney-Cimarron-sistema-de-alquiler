@@ -19,25 +19,23 @@
                         <i class="fi fi-br-search lupa"></i>
                     </div>
                     <div class="botonBox">
-                        <button  type="button" id="incluir" data-toggle="modal" data-target="#modal1" name="consultar" class="boton"><i class='fi fi-br-user-add iconB'></i> Nuevo Usuario</button>
+                        <button  type="button" id="incluir" class="boton cta"><i class='fi fi-br-user-add iconB'></i> Nuevo Usuario</button>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" role="dialog"  id="modal1">
-        <div class="modalInter modal-dialogo" role="document">
+    <div class="modal-contenedor">
+        <div class="modal modal-close">
             <div class="contentModal">
                 <div class="headerModal">
-                    <h5 class="modal-title">Formulario de Personas</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <h2 class="titleModal">Registro de Usuarios<span>.</span></h2>
+                    <button type="button" class="closes">X</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="js/modal.js"></script>
 </body>
 </html>
