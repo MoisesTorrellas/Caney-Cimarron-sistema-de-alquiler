@@ -119,7 +119,7 @@ ul {
     background-color: transparent;
     border-radius: 10px;
     border: 3px solid var(--blanco-principal);
-    width: 200px;
+    width: 240px;
     height: 50px;
     font-family: var(--fuente-principal);
     font-size: 1.3rem;
@@ -132,7 +132,9 @@ ul {
 
 .boton:hover{
     box-shadow: 0px 0px 18px 5px rgba(255,255,255,0.65);
+    text-shadow: 0px 0px 13px rgb(255, 255, 255);
 }
+
 .iconB{
     font-size: 1.5rem;
     margin-right:10px ;
