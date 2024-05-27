@@ -16,6 +16,7 @@ function cerrarModal(){
     setTimeout(function(){
         modalc.style.opacity = "0"
         modalc.style.visibility = "hidden"
+		consultar();
     },300)
 }
 
@@ -141,7 +142,7 @@ $("#proceso").on("click",function(){
 			datos.append('contraseña',$("#contraseña").val());
             datos.append('tipoUsuario',$("#tipoUsuario").val());
 			enviaAjax(datos);
-			consultar()
+			consultar();
 		}
 	}
 	else if($(this).text()=="Modificar Usuario"){
@@ -157,7 +158,7 @@ $("#proceso").on("click",function(){
             datos.append('tipoUsuario',$("#tipoUsuario").val());
 			
 			enviaAjax(datos);
-			consultar()
+			consultar();
 		}
 	}
 	if($(this).text()=="Eliminar Usuario"){
@@ -172,6 +173,7 @@ $("#proceso").on("click",function(){
 			datos.append('accion','eliminar');
 			datos.append('cedulaUsuario',$("#cedulaUsuario").val());
 			enviaAjax(datos);
+			consultar();
 		}
 	}
 });
