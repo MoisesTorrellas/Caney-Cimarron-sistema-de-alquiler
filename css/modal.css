@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+    --gris-principal:#131524;
+    --blanco-principal: rgb(255, 255, 255);
+    --gradiente-fondo: linear-gradient(90deg, hsla(211, 36%, 46%, 1) 0%,  hsla(208, 33%, 21%, 1) 100%);
+    --gradiente-icon: linear-gradient(90deg, hsla(192, 95%, 50%, 1) 0%, hsla(225, 89%, 47%, 1) 100%);
+    --fuente-principal: "Outfit", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modal-contenedor{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.modal2{
+    width: 80%;
+    height: 550px;
+    background: var(--gris-principal);
+    text-align: center;
+    display: block;
+    position: relative;
+    transition: transform .3s;
+    transform: translateY(-0%);
+    border-radius: 10px;
+}
+.modal-close{
+    transform: translateY(-200%);
+}
+
+.contentModal{
+    width: 100%;
+    height: 100%;
+   
+}
+
+.headerModal{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #2c2c2c;
+}
+
+.titleModal{
+    color: var(--blanco-principal);
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+    margin-left: 50px;
+    font-size: 2rem;
+}
+
+.titleModal span{
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
+}
+
+.closes{
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+    margin-right: 50px;
+    font-size: 2rem;
+    border: none;
+}
+.closes:hover{
+    text-shadow: 0px 0px 13px rgb(255, 255, 255);
+}
+
+/* --------------------------ESTILOS FORMULARIOS-------------------------- */
+
+.form-contenedor{
+    width: 100%;
+    height: calc(100% - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 30px 40px 30px 40px; 
+}
+
+.form-box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 30px 20px 30px;
+    width: 250px;
+    height: 40px;
+}
+
+.form-box input{
+    position: relative;
+    width: 250px;
+    height: 40px;
+    background-color: transparent;
+    border: 3px solid var(--blanco-principal);
+    border-radius: 10px;
+    outline: none;
+    color: var(--blanco-principal);
+    padding: 20px 20px 20px 20px; 
+    font-family: var(--fuente-principal);
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.form-name{
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    font-weight: 500;
+    color: #e9e9e9;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.5s;
+    color: var(--blanco-principal); 
+    font-size: .9rem;
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+}
+
+.form-box input:focus ~ label,
+.form-box input:valid ~ label {
+  top: -18px;
+}
+
+.span{
+    color: #ffffff;
+    position: absolute;
+    top:50px;
+    left: 15px;
+    color: var(--blanco-principal); 
+    font-size: .8rem;
+    font-weight: 600;
+    font-family: var(--fuente-principal);
+}
+
+.botonF{
+    color: var(--blanco-principal);
+    background-color: transparent;
+    border-radius: 10px;
+    border: 3px solid var(--blanco-principal);
+    width: 200px;
+    height: 50px;
+    font-family: var(--fuente-principal);
+    font-size: .9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ease;
+}
+
+.botonF:hover{
+    box-shadow: 0px 0px 18px 5px rgba(255,255,255,0.65);
+}
+
+.iconF{
+    font-size: 1.3rem;
+    margin-right:10px ;
+    text-align: center;
+    margin-top: 8px;
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
+}
+
+.form-name-modi{
+    position: absolute;
+    bottom: -88px;
+}
+
+.form-box select{
+    width: 250px;
+    height: 45px;
+    background-color: transparent;
+    border: 3px solid var(--blanco-principal);
+    border-radius: 10px;
+    outline: none;
+    color: var(--blanco-principal);
+    font-family: var(--fuente-principal);
+    padding: 0px 20px 0px 20px; 
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.option{
+    width: 250px;
+    height: 45px;
+    background: var(--gris-principal);
+    border: 3px solid var(--blanco-principal);
+    color: var(--blanco-principal);
+    font-family: var(--fuente-principal);
+    padding: 0px 20px 0px 20px; 
+    font-size: .9rem;
+    font-weight: 500;
+}

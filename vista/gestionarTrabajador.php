@@ -11,7 +11,7 @@
             <?php include('comunes/navbarsuperior.php');?>
             <div class="content">
                 <div class="tituloBox">
-                    <h1 class="titulo">Pagina Principal<span>.</span></h1>
+                    <h1 class="titulo">Gestionar Trabajador<span>.</span></h1>
                 </div>
             </div>
         </div>
