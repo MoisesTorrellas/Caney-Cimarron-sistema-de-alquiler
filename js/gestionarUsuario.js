@@ -9,6 +9,7 @@ $(cerrar).on("click",function(){
         modalc.style.opacity = "0"
         modalc.style.visibility = "hidden"
     },300)
+	consultar();
 });
 
 function cerrarModal(){
