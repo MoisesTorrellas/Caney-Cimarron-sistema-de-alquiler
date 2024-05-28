@@ -25,7 +25,7 @@
                     <i class='fi fi-br-lock icon'></i>
                 </div>
                 <div class="boton-box">
-                    <button class="boton"><i class='fi fi-br-sign-in-alt iconB'></i> Iniciar Sesión</button>
+                    <button type="submit" name="ingresar" id="ingresar" class="boton"><i class='fi fi-br-sign-in-alt iconB'></i> Iniciar Sesión</button>
                 </div>                
             </div>
         </form>
