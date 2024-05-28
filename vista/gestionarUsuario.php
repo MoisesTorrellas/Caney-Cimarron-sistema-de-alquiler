@@ -32,8 +32,8 @@
                                     <th class="th">Apellido</th>
                                     <th class="th">Telefono</th>
                                     <th class="th">Usuario</th>
-                                    <!-- <th class="th">Contraseña</th>
-                                    <th class="th">Tipo</th> -->
+                                    <th class="th">Contraseña</th>
+                                    <th class="th">Tipo</th>
                                     <th class="th">Acciones</th>
                                 </tr>
                             </thead>

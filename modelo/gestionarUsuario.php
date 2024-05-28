@@ -192,12 +192,12 @@ class gestionarUsuario extends datos{
 						$respuesta = $respuesta."<td class='td'>";
 							$respuesta = $respuesta.$r['usuario'];
 						$respuesta = $respuesta."</td>";
-						/* $respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'>";
 							$respuesta = $respuesta.$r['contraseña'];
 						$respuesta = $respuesta."</td>";
 						$respuesta = $respuesta."<td class='td'>";
 							$respuesta = $respuesta.$r['tipoUsuario'];
-						$respuesta = $respuesta."</td>"; */
+						$respuesta = $respuesta."</td>";
 						$respuesta = $respuesta."<td class='td tbBoton'>";
 							$respuesta = $respuesta."<button type='button'
 							class='botonTabla botonTablaE' 
