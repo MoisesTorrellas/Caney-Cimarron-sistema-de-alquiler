@@ -33,13 +33,19 @@ function consultar(){
 }
 
 /* function destruyeDT(){
+<<<<<<< Updated upstream
 	//1 se destruye el datatablet
+=======
+>>>>>>> Stashed changes
 	if ($.fn.DataTable.isDataTable("#tablapersona")) {
         $("#tablapersona").DataTable().destroy();
     }
 }
 function crearDT(){
+<<<<<<< Updated upstream
 	//se crea nuevamente
+=======
+>>>>>>> Stashed changes
     if (!$.fn.DataTable.isDataTable("#tablapersona")) {
         $("#tablapersona").DataTable({
 			language: {
