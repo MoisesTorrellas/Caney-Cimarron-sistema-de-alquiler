@@ -101,7 +101,7 @@ $(document).ready(function(){
 	});
 
 	$("#telefonoUsuario").on("keyup",function(){
-		validarkeyup(/^[0]{1}[4]{1}[1-2]{1}[2-4]{1}[-]{1}[0-9]{7}$/,
+		validarkeyup(/^[0-5]{4}[-]{1}[0-9]{7}$/,
 		$(this),$("#stelefonoUsuario"),"El formato es 0400-000000");
 	});
 
@@ -211,7 +211,7 @@ function validarenvio(){
 		muestraMensaje("Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
-	else if(validarkeyup(/^[0]{1}[4]{1}[1-2]{1}[2-4]{1}[-]{1}[0-9]{7}$/,
+	else if(validarkeyup(/^[0-5]{4}[-]{1}[0-9]{7}$/,
 		$("#telefonoUsuario"),$("#stelefonoUsuario"),"Ingrese una fecha valida")==0){
 		muestraMensaje("Ingrese un telefono valido");
 		return false;	

@@ -3,8 +3,8 @@
 :root{
     --gris-principal:#131524;
     --blanco-principal: rgb(255, 255, 255);
-    --gradiente-fondo: linear-gradient(90deg, hsla(211, 36%, 46%, 1) 0%,  hsla(208, 33%, 21%, 1) 100%);
-    --gradiente-icon: linear-gradient(90deg, hsla(192, 95%, 50%, 1) 0%, hsla(225, 89%, 47%, 1) 100%);
+    --gradiente-fondo: linear-gradient(to right, #243949 0%, #426988 100%);
+    --gradiente-icon: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
     --fuente-principal: "Outfit", sans-serif;
 }
 
