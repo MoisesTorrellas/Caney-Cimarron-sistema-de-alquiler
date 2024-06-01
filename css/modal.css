@@ -221,3 +221,29 @@
     font-size: .9rem;
     font-weight: 500;
 }
+
+.modal-content{
+    background: var(--gris-principal);
+}
+
+.modal-header{
+    border-bottom: 2px solid #2c2c2c;
+}
+.titleMiniModal{
+    color: var(--blanco-principal);
+    font-family: var(--fuente-principal);
+    font-weight: 500;
+}
+
+#contenidodemodal{
+    color: var(--blanco-principal);
+    font-family: var(--fuente-principal);
+    font-weight: 500;
+    width: 100%;
+}
+
+.titleMiniModal span{
+    background: var(--gradiente-icon);
+    -webkit-background-clip: text;
+    color: transparent; 
+}

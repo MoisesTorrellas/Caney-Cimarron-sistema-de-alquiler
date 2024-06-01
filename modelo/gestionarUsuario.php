@@ -95,7 +95,7 @@ class gestionarUsuario extends datos{
 						'$this->tipoUsuario'
 						)");
 						$r['resultado'] = 'incluir';
-                        $r['mensaje'] =  'Registro Inluido';
+                        $r['mensaje'] =  'Usuario Registrado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
                 $r['mensaje'] =  $e->getMessage();
@@ -126,7 +126,7 @@ class gestionarUsuario extends datos{
 						cedulaUsuario = '$this->cedulaUsuario'
 						");
 						$r['resultado'] = 'modificar';
-			            $r['mensaje'] =  'Registro Modificado';
+			            $r['mensaje'] =  'Usuario Modificado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
 			    $r['mensaje'] =  $e->getMessage();
@@ -150,7 +150,7 @@ class gestionarUsuario extends datos{
 						cedulaUsuario = '$this->cedulaUsuario'
 						");
 						$r['resultado'] = 'eliminar';
-			            $r['mensaje'] =  'Registro Eliminado';
+			            $r['mensaje'] =  'Usuario Eliminado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
 			    $r['mensaje'] =  $e->getMessage();

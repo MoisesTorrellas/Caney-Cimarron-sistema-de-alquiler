@@ -14,10 +14,22 @@
                     <h1 class="titulo">Gestionar Usuarios<span>.</span></h1>
                 </div>
                 <div class="contentBusqueda">
-                    <div class="buscador">
-                        <input class="" type="search" id="buscar" name="buscar" placeholder="Buscar...">
+                    <div id="tablapersona_filter" class="dataTables_filter buscador">
+                        <input class="search-input" type="search" aria-controls="tablapersona" placeholder="Buscar...">
                         <i class="fi fi-br-search lupa"></i>
                     </div>
+
+                    <div class="botonera">
+                        <ul>
+                            <li><button>1</button></li>
+                            <li><button>2</button></li>
+                            <li><button>3</button></li>
+                            <li><span>...</span></li>
+                            <li><button>9</button></li>
+                            <li><button>10</button></li>
+                        </ul>
+                    </div>
+
                     <div class="botonBox">
                         <button  type="button" id="incluir" class="boton cta"><i class='fi fi-br-user-add iconB'></i> Nuevo Usuario</button>
                     </div>
@@ -103,8 +115,9 @@
                             </div>
                         </div>
                         <div class="row">
-                        <button type="button" class="botonF" id="proceso"><i class='fi fi-br-user-add iconF'></i> </button>
-                        </div>
+                            <button type="button" class="botonF" id="proceso"></button>
+                            </div>
+                            
                 </form>
             </div>
             </div>

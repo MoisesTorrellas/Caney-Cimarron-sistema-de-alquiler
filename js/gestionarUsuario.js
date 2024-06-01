@@ -1,32 +1,29 @@
 let cerrar = document.querySelectorAll(".closes")[0];
-let abrir = document.querySelectorAll(".cta")[0];
 let modal = document.querySelectorAll(".modal2")[0];
 let modalc = document.querySelectorAll(".modal-contenedor")[0];
 
+//Funcion para el boton de cerrar el modal de formularios
 $(cerrar).on("click",function(){
+	cerrarModal();
+});
+
+//funcion para cerrar el modal despues de modificar y eliminar
+function cerrarModal(){
 	modal.classList.toggle("modal-close")
     setTimeout(function(){
         modalc.style.opacity = "0"
         modalc.style.visibility = "hidden"
     },300)
-	consultar();
-});
-
-function cerrarModal(){
-    modal.classList.toggle("modal-close")
-    setTimeout(function(){
-        modalc.style.opacity = "0"
-        modalc.style.visibility = "hidden"
-		consultar();
-    },300)
 }
 
+//funcion para abrir el modal al pulsar el boton de incluir, modificar y eliminar
 function abrirModal(){
 	modalc.style.opacity = "1"
     modalc.style.visibility = "visible"
     modal.classList.toggle("modal-close")
 }
 
+//funcion para consultar los datos
 function consultar(){
 	var datos = new FormData();
 	datos.append('accion','consultar');
@@ -36,38 +33,38 @@ function consultar(){
 /* function destruyeDT(){
 	//1 se destruye el datatablet
 	if ($.fn.DataTable.isDataTable("#tablapersona")) {
-        $("#tablapersona").DataTable().destroy();
+            $("#tablapersona").DataTable().destroy();
     }
 }
 function crearDT(){
 	//se crea nuevamente
     if (!$.fn.DataTable.isDataTable("#tablapersona")) {
-        $("#tablapersona").DataTable({
-			language: {
-            lengthMenu: "Mostrar _MENU_ por página",
-            zeroRecords: "No se encontraron personas",
-            info: "Mostrando página _PAGE_ de _PAGES_",
-            infoEmpty: "No hay personas registradas",
-            infoFiltered: "(filtrado de _MAX_ registros totales)",
-            search: "Buscar:",
-            paginate: {
-            first: "Primera",
-            last: "Última",
-            next: "Siguiente",
-            previous: "Anterior",
-        },
+            $("#tablapersona").DataTable({
+				language: {
+                lengthMenu: "Mostrar _MENU_ por página",
+                zeroRecords: "No se encontraron personas",
+                info: "Mostrando página _PAGE_ de _PAGES_",
+                infoEmpty: "No hay personas registradas",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                paginate: {
+                first: "Primera",
+                last: "Última",
+                next: "Siguiente",
+                previous: "Anterior",
+                },
             },
             autoWidth: false,
             order: [[1, "asc"]],
             });
-    }         
+    }
 } */
 
 $(document).ready(function(){
 	
+	//validaciones
 	consultar();
-	
-//VALIDACION DE DATOS	
+
+	//VALIDACION DE CEDULA
 	$("#cedulaUsuario").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
@@ -77,7 +74,7 @@ $(document).ready(function(){
 		$("#scedulaUsuario"),"El formato debe ser 9999999 ");
 	});
 	
-	
+	//VALIDACION DEL NOMBRE
 	$("#nombreUsuario").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
@@ -86,7 +83,7 @@ $(document).ready(function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#snombreUsuario"),"Solo letras  entre 3 y 30 caracteres");
 	});
-	
+	//VALIDACION DE APELLIDO
 	$("#apellidoUsuario").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
@@ -95,7 +92,7 @@ $(document).ready(function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#sapellidoUsuario"),"Solo letras  entre 3 y 30 caracteres");
 	});
-	
+	//VALIDACION DE TELEFONO
     $("#telefonoUsuario").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
@@ -104,7 +101,7 @@ $(document).ready(function(){
 		validarkeyup(/^[0-5]{4}[-]{1}[0-9]{7}$/,
 		$(this),$("#stelefonoUsuario"),"El formato es 0400-000000");
 	});
-
+	//VALIDACION DEL USERNAME
     $("#usuario").on("keypress",function(e){
 		validarkeypress(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
@@ -113,7 +110,7 @@ $(document).ready(function(){
 		validarkeyup(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
 		$(this),$("#susuario"),"Solo letras y numeros entre 3 y 15 caracteres");
 	});
-
+	//VALIDACION DE CONTRASEÑA
     $("#contraseña").on("keypress",function(e){
 		validarkeypress(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
@@ -122,15 +119,11 @@ $(document).ready(function(){
 		validarkeyup(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
 		$(this),$("#scontraseña"),"Solo letras y numeros entre 3 y 15 caracteres");
 	});
-	
-	
-	
-//FIN DE VALIDACION DE DATOS
 
-
-
-//CONTROL DE BOTONES
+	//CONTROL DE BOTONES 
 $("#proceso").on("click",function(){
+
+	//CONTROL DE BOTON REGISTRAR USUARIO
 	if($(this).text()=="Registrar Usuario"){
 		if(validarenvio()){
 			var datos = new FormData();
@@ -141,11 +134,11 @@ $("#proceso").on("click",function(){
 			datos.append('telefonoUsuario',$("#telefonoUsuario").val());
 			datos.append('usuario',$("#usuario").val());
 			datos.append('contraseña',$("#contraseña").val());
-            datos.append('tipoUsuario',$("#tipoUsuario").val());
+			datos.append('tipoUsuario',$("#tipoUsuario").val());
 			enviaAjax(datos);
-			consultar();
 		}
 	}
+	//CONTROL DE BOTON MODIFICAR USUARIO
 	else if($(this).text()=="Modificar Usuario"){
 		if(validarenvio()){
 			var datos = new FormData();
@@ -157,11 +150,10 @@ $("#proceso").on("click",function(){
 			datos.append('usuario',$("#usuario").val());
 			datos.append('contraseña',$("#contraseña").val());
             datos.append('tipoUsuario',$("#tipoUsuario").val());
-			
 			enviaAjax(datos);
-			consultar();
 		}
 	}
+	//CONTROL DE BOTON ELIMINAR USUARIO
 	if($(this).text()=="Eliminar Usuario"){
 		if(validarkeyup(/^[0-9]{7,8}$/,$("#cedulaUsuario"),
 		$("#scedulaUsuario"),"El formato debe ser 9999999")==0){
@@ -174,17 +166,15 @@ $("#proceso").on("click",function(){
 			datos.append('accion','eliminar');
 			datos.append('cedulaUsuario',$("#cedulaUsuario").val());
 			enviaAjax(datos);
-			consultar();
 		}
 	}
 });
 
-
+// ACCION DE CLICK AL PULSAR EL BOTON INCLUIR
 $("#incluir").on("click",function(){
 	limpia();
 	$("#proceso").text("Registrar Usuario");
 	abrirModal();
-	consultar();
 });
 
 
@@ -193,7 +183,7 @@ $("#incluir").on("click",function(){
 	
 });
 
-//Validación de todos los campos antes del envio
+//VALIDACIONES DEL ENVIO
 function validarenvio(){
 	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedulaUsuario"),
 		$("#scedulaUsuario"),"El formato debe ser 9999999")==0){
@@ -230,20 +220,17 @@ function validarenvio(){
 	return true;
 }
 
-
-//Funcion que muestra el modal con un mensaje
+//FUNCION PARA MOSTRAR EL MODAL CON EL MENSAJE DE LA ACCION
 function muestraMensaje(mensaje){
 	
 	$("#contenidodemodal").html(mensaje);
 			$("#mostrarmodal").modal("show");
 			setTimeout(function() {
 					$("#mostrarmodal").modal("hide");
-				},5000);
+				},3000);
 			
 }
 
-
-//Función para validar por Keypress
 function validarkeypress(er,e){
 	
 	key = e.keyCode;
@@ -261,7 +248,7 @@ function validarkeypress(er,e){
 	
     
 }
-//Función para validar por keyup
+
 function validarkeyup(er,etiqueta,etiquetamensaje,
 mensaje){
 	a = er.test(etiqueta.val());
@@ -274,8 +261,7 @@ mensaje){
 		return 0;
 	}
 }
-
-//funcion para pasar de la lista a el formulario
+// ACCION DE CLICK AL PULSAR LOS BOTONES ELIMINAR Y MODIFICAR
 function pone(pos,accion){
 	
 	linea=$(pos).closest('tr');
@@ -295,12 +281,11 @@ function pone(pos,accion){
     $("#tipoUsuario").val($(linea).find("td:eq(6)").text());
 
 	abrirModal()
-	consultar()
 	
 }
 
+//ENVIO POR AJAX
 
-//funcion que envia y recibe datos por AJAX
 function enviaAjax(datos) {
 	$.ajax({
     async: true,
@@ -311,32 +296,40 @@ function enviaAjax(datos) {
     processData: false,
     cache: false,
     beforeSend: function () {},
-    timeout: 10000, //tiempo maximo de espera por la respuesta del servidor
+    timeout: 10000, 
     success: function (respuesta) {
-    // console.log(respuesta);
 		try {
         var lee = JSON.parse(respuesta);
-		if (lee.resultado == "consultar") {
-			/* destruyeDT(); */	
+		if (lee.resultado == "consultar") {	
+			/* destruyeDT(); */
 			$("#resultadoconsulta").html(lee.mensaje);
 			/* crearDT(); */
 		}
+		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "INCLUIR" 
+		Y EL MENSAJE ES "USUARIO REGISTRADO" CUNSULTA Y LIMPIA EL FORMULARIO*/
 		else if (lee.resultado == "incluir") {
 			muestraMensaje(lee.mensaje);
 			if(lee.mensaje=='Usuario Registrado'){
 				consultar();
+				limpia();
 			}
         }
+		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "MODIFICAR" 
+		Y EL MENSAJE ES "USUARIO MODIFICADO" CUNSULTA Y CIERRA EL MODAL*/
 		else if (lee.resultado == "modificar") {
 			muestraMensaje(lee.mensaje);
 			if(lee.mensaje=='Usuario Modificado'){
 				consultar();
+				cerrarModal();
 			}
         }
+		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "ELIMINAR" 
+		Y EL MENSAJE ES "USUARIO ELIMINADO" CUNSULTA Y CIERRA EL MODAL*/
 		else if (lee.resultado == "eliminar") {
 			muestraMensaje(lee.mensaje);
 			if(lee.mensaje=='Usuario Eliminado'){
 				consultar();
+				cerrarModal();
 			}
         }
 		else if (lee.resultado == "error") {
@@ -349,10 +342,8 @@ function enviaAjax(datos) {
     error: function (request, status, err) {
     
 		if (status == "timeout") {
-        //pasa cuando superan los 10000 10 segundos de timeout
         muestraMensaje("Servidor ocupado, intente de nuevo");
 		} else {
-        //cuando ocurre otro error con ajax
         muestraMensaje("ERROR: <br/>" + request + status + err);
 		}
     },
@@ -360,6 +351,7 @@ function enviaAjax(datos) {
 	});
 }
 
+//FUNCION PARA LIMPIAR EL MODAL
 function limpia(){
 	$("#cedulaUsuario").val("");
 	$("#nombreUsuario").val("");
@@ -367,5 +359,5 @@ function limpia(){
     $("#telefonoUsuario").val("");
     $("#usuario").val("");
     $("#contraseña").val("");
-	$("#tipoUsuario").prop("selectedIndex",0);
+
 }
