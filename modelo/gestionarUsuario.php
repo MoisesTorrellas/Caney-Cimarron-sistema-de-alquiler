@@ -176,9 +176,7 @@ class gestionarUsuario extends datos{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		$columnas=['cedulaUsuario','nombreUsuario','apellidoUsuario','telefonoUsuario','usuario','tipoUsuario'];
 		try{
-
 			
 			$resultado= $co->query("Select * from usuarios where cedulaUsuario like '$this->busqueda%' 
 									or nombreUsuario like '$this->busqueda%'
