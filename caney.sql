@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2024 a las 19:49:19
+-- Tiempo de generación: 03-06-2024 a las 01:20:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -47,10 +47,10 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `cedulaUsuario`, `nombreUsuario`, `apellidoUsuario`, `telefonoUsuario`, `usuario`, `contraseña`, `tipoUsuario`) VALUES
 (1, '0000000', 'Administrador', 'Administrador', '0000-0000000', 'administrador', '123456', 'Administrador'),
 (4, '29506932', 'Moises', 'Torrellas', '0412-0565231', 'moises25', '654321', 'Usuario'),
-(8, '23423423', 'fdgfdgd', 'fgfgdfg', '0000-0000000', 'dfsfsdf', 'sdfsdf', 'Usuario'),
-(9, '34234234', 'gfdgdfg', 'fgdfgdfg', '0000-0000000', 'fgfgdfg', 'fgdfgdfg', 'Usuario'),
-(10, '3423423', 'ghjghj', 'dfgdfg', '0000-0000000', 'fghfghfgh', 'hfghfgh', 'Usuario'),
-(11, '87978986', 'fgdfgdfg', 'dfgdfgdfg', '0000-0000000', 'fsdfsdf', 'sdfsdf', 'Usuario');
+(13, '27737458', 'Ricardo', 'Hernández', '0000-0000000', 'ricardo27', '123456', 'Usuario'),
+(14, '31550201', 'Santiago', 'Oviedo', '0000-0000000', 'santiago31', '123456', 'Usuario'),
+(15, '29517871', 'Leonardo', 'Medina', '0000-0000000', 'leonardo29', '123456', 'Usuario'),
+(16, '29623228', 'Yonjarman', 'Peréz', '0000-0000000', 'yonjarman29', '123456', 'Usuario');
 
 --
 -- Índices para tablas volcadas
@@ -70,7 +70,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
