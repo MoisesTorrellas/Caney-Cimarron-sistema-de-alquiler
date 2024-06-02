@@ -13,8 +13,9 @@ require_once("modelo/".$pagina.".php");
 		$o = new gestionarUsuario();   
 
 		$accion = $_POST['accion'];
-		
+
 		if($accion=='consultar'){
+			$o->set_busqueda($_POST['busqueda']);
 			echo  json_encode($o->consultar());  
 		}
 		else if($accion=='eliminar'){

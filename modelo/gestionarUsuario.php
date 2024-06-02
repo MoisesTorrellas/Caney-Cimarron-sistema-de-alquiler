@@ -11,7 +11,7 @@ class gestionarUsuario extends datos{
 	private $usuario;
 	private $contraseña;
     private $tipoUsuario;
-	
+	private $busqueda;
 	
 	function set_cedulaUsuario($valor){
 		$this->cedulaUsuario = $valor;
@@ -38,6 +38,10 @@ class gestionarUsuario extends datos{
 	}
     function set_tipoUsuario($valor){
 		$this->tipoUsuario = $valor;
+	}
+
+	function set_busqueda($valor){
+		$this->busqueda = $valor;
 	}
 	
 /* ------------------------GET------------------------ */
@@ -67,6 +71,10 @@ class gestionarUsuario extends datos{
 	
     function get_tipoUsuario(){
 		return $this->tipoUsuario;
+	}
+
+	function get_busqueda(){
+		return $this->busqueda;
 	}
 	
 	
@@ -168,14 +176,22 @@ class gestionarUsuario extends datos{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
+		$columnas=['cedulaUsuario','nombreUsuario','apellidoUsuario','telefonoUsuario','usuario','tipoUsuario'];
 		try{
+
 			
-			$resultado = $co->query("Select * from usuarios");
-			
+			$resultado= $co->query("Select * from usuarios where cedulaUsuario like '$this->busqueda%' 
+									or nombreUsuario like '$this->busqueda%'
+									or apellidoUsuario like '$this->busqueda%'
+									or telefonoUsuario like '$this->busqueda%'
+									or usuario like '$this->busqueda%'
+									or tipoUsuario like '$this->busqueda%'");
+
 			if($resultado){
 				
 				$respuesta = '';
 				foreach($resultado as $r){
+					
 					$respuesta = $respuesta."<tr class='tr'>";
 						$respuesta = $respuesta."<td class='td'>";
 							$respuesta = $respuesta.$r['cedulaUsuario'];
@@ -209,7 +225,7 @@ class gestionarUsuario extends datos{
 						    ><i class='fi fi-br-trash-xmark iconTabla'></i></button><br/>";
 						$respuesta = $respuesta."</td>";
 					$respuesta = $respuesta."</tr>";
-				}
+				}  
 				
 			    $r['resultado'] = 'consultar';
 				$r['mensaje'] =  $respuesta;
@@ -250,6 +266,71 @@ class gestionarUsuario extends datos{
 			return false;
 		}
 	}
-		
+	
+	function buscar(){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+		$columnas=['cedulaUsuario','nombreUsuario','apellidoUsuario','telefonoUsuario','usuario','contraseña','tipoUsuario'];
+		try{
+
+				$resultado= $co->query("Select * from usuarios where ".$columnas[0]." like '$this->busqueda%'");
+			
+				if($resultado){
+				
+					$respuesta = '';
+					foreach($resultado as $r){
+						
+						$respuesta = $respuesta."<tr class='tr'>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['cedulaUsuario'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['nombreUsuario'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['apellidoUsuario'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['telefonoUsuario'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['usuario'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['contraseña'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td'>";
+								$respuesta = $respuesta.$r['tipoUsuario'];
+							$respuesta = $respuesta."</td>";
+							$respuesta = $respuesta."<td class='td tbBoton'>";
+								$respuesta = $respuesta."<button type='button'
+								class='botonTabla botonTablaE' 
+								onclick='pone(this,0)'
+								><i class='fi fi-br-pencil iconTabla'></i></button><br/>";
+								$respuesta = $respuesta."<button type='button'
+								class='botonTabla' 
+								onclick='pone(this,1)'
+								><i class='fi fi-br-trash-xmark iconTabla'></i></button><br/>";
+							$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."</tr>";
+					}  
+					
+					$r['resultado'] = 'buscar';
+					$r['mensaje'] =  $respuesta;
+				}
+				else{
+					$r['resultado'] = 'buscar';
+					$r['mensaje'] =  '';
+				}
+
+
+		}catch(Exception $e){
+			$r['resultado'] = 'error';
+			$r['mensaje'] =  $e->getMessage();
+		}
+		return $r;
+	} 
+
 }
 ?>

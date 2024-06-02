@@ -4,7 +4,7 @@ class datos{
     private $bd = "caney";
     private $usuario = "root";
     private $contrasena = "";
-   
+
     
     
     function conecta(){
@@ -13,5 +13,8 @@ class datos{
         $pdo->exec("set names utf8");
         return $pdo;
     }
+
 }
+
+
 ?>

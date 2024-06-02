@@ -15,8 +15,11 @@
                 </div>
                 <div class="contentBusqueda">
                     <div id="tablapersona_filter" class="dataTables_filter buscador">
-                        <input class="search-input" type="search" aria-controls="tablapersona" placeholder="Buscar...">
-                        <i class="fi fi-br-search lupa"></i>
+                    <form method="post" id="f" autocomplete="off">
+                    <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
+                            <input id="busqueda" name="busqueda" type="text"  placeholder="Buscar...">
+                            <i class="fi fi-br-search lupa"></i>
+                        </form>
                     </div>
 
                     <div class="botonera">
@@ -36,7 +39,7 @@
                 </div>
                 <div class="containerTabla">
                     <div class="conteinerHijoTabla">
-                        <table class="tabla" id="tablapersona">
+                        <table class="tabla" id="tablageneral">
                             <thead class="headTabla">
                                 <tr class="trH">
                                     <th class="th">Cedula</th>
@@ -115,7 +118,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <button type="button" class="botonF" id="proceso"></button>
+                            <button type="button" class="botonF" id="proceso"><i class="" id="icon"></i></button>
                             </div>
                             
                 </form>
@@ -125,6 +128,6 @@
     </div>
     <?php require_once("comunes/modal.php"); ?>
     <script src="js/gestionarUsuario.js"></script>
-    <!-- <script src="js/modal.js"></script> -->
+    <!-- <script src="/js/datatablets.js"></script>  -->
 </body>
 </html>

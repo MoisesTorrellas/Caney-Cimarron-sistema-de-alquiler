@@ -1,6 +1,8 @@
 let cerrar = document.querySelectorAll(".closes")[0];
 let modal = document.querySelectorAll(".modal2")[0];
 let modalc = document.querySelectorAll(".modal-contenedor")[0];
+document.getElementById("busqueda").addEventListener("keyup", consultar);
+
 
 //Funcion para el boton de cerrar el modal de formularios
 $(cerrar).on("click",function(){
@@ -27,41 +29,16 @@ function abrirModal(){
 function consultar(){
 	var datos = new FormData();
 	datos.append('accion','consultar');
+	datos.append('busqueda',$("#busqueda").val());
 	enviaAjax(datos);	
 }
 
-/* function destruyeDT(){
-	//1 se destruye el datatablet
-	if ($.fn.DataTable.isDataTable("#tablapersona")) {
-            $("#tablapersona").DataTable().destroy();
-    }
-}
-function crearDT(){
-	//se crea nuevamente
-    if (!$.fn.DataTable.isDataTable("#tablapersona")) {
-            $("#tablapersona").DataTable({
-				language: {
-                lengthMenu: "Mostrar _MENU_ por página",
-                zeroRecords: "No se encontraron personas",
-                info: "Mostrando página _PAGE_ de _PAGES_",
-                infoEmpty: "No hay personas registradas",
-                infoFiltered: "(filtrado de _MAX_ registros totales)",
-                paginate: {
-                first: "Primera",
-                last: "Última",
-                next: "Siguiente",
-                previous: "Anterior",
-                },
-            },
-            autoWidth: false,
-            order: [[1, "asc"]],
-            });
-    }
-} */
+
 
 $(document).ready(function(){
 	
 	//validaciones
+
 	consultar();
 
 	//VALIDACION DE CEDULA
@@ -227,7 +204,7 @@ function muestraMensaje(mensaje){
 			$("#mostrarmodal").modal("show");
 			setTimeout(function() {
 					$("#mostrarmodal").modal("hide");
-				},3000);
+				},30000);
 			
 }
 
@@ -267,6 +244,7 @@ function pone(pos,accion){
 	linea=$(pos).closest('tr');
 
 	if(accion==0){
+		//$("#icon").classList('fi fi-br-user-add iconB');
 		$("#proceso").text("Modificar Usuario");
 	}
 	else{
@@ -300,10 +278,9 @@ function enviaAjax(datos) {
     success: function (respuesta) {
 		try {
         var lee = JSON.parse(respuesta);
+
 		if (lee.resultado == "consultar") {	
-			/* destruyeDT(); */
 			$("#resultadoconsulta").html(lee.mensaje);
-			/* crearDT(); */
 		}
 		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "INCLUIR" 
 		Y EL MENSAJE ES "USUARIO REGISTRADO" CUNSULTA Y LIMPIA EL FORMULARIO*/
