@@ -42,7 +42,13 @@ a:hover{
     height: 50px;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
+}
+
+.saludo-modi{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0 30px;
 }
 
 .barraSuperior a{

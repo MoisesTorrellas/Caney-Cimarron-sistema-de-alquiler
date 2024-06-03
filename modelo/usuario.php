@@ -6,13 +6,18 @@ class inicio extends datos{
 
     private $usuario;
     private $contraseña;
+    private $nombreUsuario;
 
-    public function usuarioExiste($user,$pass){
+    
+
+
+    public function usuarioExiste($user,$pass,){
 
         $query = $this->conecta()->prepare('SELECT * FROM usuarios WHERE usuario=:user AND contraseña=:pass');
         $query->execute(['user' => $user, 'pass' => $pass]);
 
         if($query->rowCount()){
+            
             return true;
         }
         else{

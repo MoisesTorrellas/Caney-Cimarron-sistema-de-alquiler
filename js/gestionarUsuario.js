@@ -36,6 +36,7 @@ function consultar(){
 
 
 $(document).ready(function(){
+
 	
 	//validaciones
 
@@ -204,7 +205,7 @@ function muestraMensaje(mensaje){
 			$("#mostrarmodal").modal("show");
 			setTimeout(function() {
 					$("#mostrarmodal").modal("hide");
-				},30000);
+				},3000);
 			
 }
 
