@@ -32,7 +32,7 @@ ul {
 }
 
 .contenedor{
-    background-color: var(--gris-principal);
+    background: var(--azul-principal);
     backdrop-filter: blur(20px);
     width: 400px;
     height: 400px;
@@ -116,7 +116,7 @@ ul {
 
 .boton{
     color: var(--blanco-principal);
-    background-color: transparent;
+    background: var(--gradiente-icon);
     border-radius: 10px;
     border: 3px solid var(--blanco-principal);
     width: 240px;
@@ -131,8 +131,8 @@ ul {
 }
 
 .boton:hover{
-    box-shadow: 0px 0px 18px 5px rgba(255,255,255,0.65);
-    text-shadow: 0px 0px 13px rgb(255, 255, 255);
+    box-shadow: 0px 0px 18px 5px rgba(110, 110, 110, 0.74);
+    text-shadow: 0px 0px 13px rgb(110, 110, 110);
 }
 
 .iconB{
@@ -140,7 +140,5 @@ ul {
     margin-right:10px ;
     text-align: center;
     margin-top: 8px;
-    background: var(--gradiente-icon);
-    -webkit-background-clip: text;
-    color: transparent; 
+    color: var(--blanco-principal);
 }

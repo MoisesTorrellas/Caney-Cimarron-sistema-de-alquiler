@@ -3,7 +3,7 @@
 <head>
     <?php include('comunes/head.php'); ?>
 
-    <title>Plntilla de CRUD</title>
+    <title>Inicio.</title>
 </head>
 <body>
 <div class="fondo">

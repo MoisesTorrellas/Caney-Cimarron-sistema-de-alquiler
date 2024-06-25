@@ -1,0 +1,149 @@
+@media screen and (max-width:1200px) {
+    .barraLateral{
+        position: absolute;
+        width: 0px;
+        overflow: hidden;
+        transition: width 0.3s ease-in-out;
+        z-index: 1;
+        height: 100vh;
+    }
+    .content{
+        width: 100vw;
+    }
+    .barraSuperior{
+        width: 100vw;
+    }
+    .out2{
+        display: none;
+    }
+    .bMenu{
+        display: block;
+    }
+
+    .menuShow{
+        width: 250px;
+    }
+    .botonR{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonR a{
+        margin: 10px 10px 0px 10px;
+        font-size: 1.1rem;
+    }
+}
+@media screen and (max-width:999px){
+    .modal2{
+        width: 90%;
+
+    }
+    
+}
+@media screen and (max-width:940px){
+    .tr{
+        font-size: .8rem;
+    }
+    .trH{
+        font-size: .8rem;
+    }
+}
+@media screen and (max-width:888px){
+    .modal2{
+       height: 90%;
+
+    }
+    .form-contenedor{
+        overflow: auto;
+        justify-content: center;
+        padding: 40px 0 40px 0;
+    }
+    .form-contenedor::-webkit-scrollbar{
+        width: 5px;
+        background-color: transparent;
+    }
+    .form-contenedor::-webkit-scrollbar-thumb{
+        background: rgba(55, 0, 255, 0.089);
+    -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+        border-radius: 20px;
+        border: 1px solid var(--azul);
+    }
+    .row{
+        width: 400px;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+    .form-box{
+        width: 100%;
+        margin: 0 0 60px 0;
+    }
+    .form-box select{
+        width: 100%;
+        margin: 0;
+    }
+}
+@media screen and (max-width:866px){
+    .trH{
+        display: none;
+    }
+    .tr{
+        height: auto;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+        
+    }
+    .td{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding-left: 0;
+        font-size: 1rem;
+        border-bottom: 2px solid #0000ff25;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .td::before{
+        content: attr(data-label);
+        float: left;
+    }
+    .tbBoton{
+        display: flex;
+        justify-content: center;
+    }
+    
+}
+@media screen and (max-width:550px){
+    .contentBusqueda{
+        flex-direction: column-reverse;
+        justify-content: center;
+        height: auto;
+    }
+    .buscador{
+        margin-left: 0;
+        
+    }
+    .botonBox{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .content{
+        height: auto;
+    }
+}
+@media screen and (max-width:490px){
+    .titulo{
+        font-size: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}

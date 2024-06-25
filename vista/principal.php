@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php include('comunes/head.php');?>
-    <title>Document</title>
+    <title>Pagina Principal.</title>
 </head>
 <body>
     <div class="conteinerPadre">

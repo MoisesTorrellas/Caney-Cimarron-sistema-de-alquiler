@@ -80,7 +80,7 @@ class gestionarUsuario extends datos{
 	
 	function incluir(){
 		$r = array();
-		if(!$this->existe($this->cedulaUsuario)){
+		if(!$this->existeCedula($this->cedulaUsuario) && !$this->existeUsuario($this->usuario)){
 			$co = $this->conecta();
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			try {
@@ -109,9 +109,13 @@ class gestionarUsuario extends datos{
                 $r['mensaje'] =  $e->getMessage();
 			}
 		}
-		else{
+		else if($this->existeCedula($this->cedulaUsuario)){
 			$r['resultado'] = 'incluir';
 			$r['mensaje'] =  'Ya existe la cedula';
+		}
+		else if($this->existeUsuario($this->usuario)){
+			$r['resultado'] = 'incluir';
+			$r['mensaje'] =  'Ya existe el usuario';
 		}
 		return $r;
 	}
@@ -120,7 +124,7 @@ class gestionarUsuario extends datos{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		if($this->existe($this->cedulaUsuario)){
+		if($this->existeCedula($this->cedulaUsuario)){
 			try {
 					$co->query("Update usuarios set 
                     cedulaUsuario = '$this->cedulaUsuario',
@@ -151,7 +155,7 @@ class gestionarUsuario extends datos{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		if($this->existe($this->cedulaUsuario)){
+		if($this->existeCedula($this->cedulaUsuario)){
 			try {
 					$co->query("delete from usuarios 
 						where
@@ -178,12 +182,12 @@ class gestionarUsuario extends datos{
 		$r = array();
 		try{
 			
-			$resultado= $co->query("Select * from usuarios where cedulaUsuario like '$this->busqueda%' 
-									or nombreUsuario like '$this->busqueda%'
-									or apellidoUsuario like '$this->busqueda%'
-									or telefonoUsuario like '$this->busqueda%'
-									or usuario like '$this->busqueda%'
-									or tipoUsuario like '$this->busqueda%'");
+			$resultado= $co->query("Select * from usuarios where cedulaUsuario like '%$this->busqueda%' 
+									or nombreUsuario like '%$this->busqueda%'
+									or apellidoUsuario like '%$this->busqueda%'
+									or telefonoUsuario like '%$this->busqueda%'
+									or usuario like '%$this->busqueda%'
+									or tipoUsuario like '%$this->busqueda%'");
 
 			if($resultado){
 				
@@ -191,28 +195,28 @@ class gestionarUsuario extends datos{
 				foreach($resultado as $r){
 					
 					$respuesta = $respuesta."<tr class='tr'>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'data-label='Cedula'>";
 							$respuesta = $respuesta.$r['cedulaUsuario'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td' data-label='Nombre'>";
 							$respuesta = $respuesta.$r['nombreUsuario'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'data-label='Apellido'>";
 							$respuesta = $respuesta.$r['apellidoUsuario'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'data-label='Telefono'>";
 							$respuesta = $respuesta.$r['telefonoUsuario'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'data-label='Usuario'>";
 							$respuesta = $respuesta.$r['usuario'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'data-label='Contraseña'>";
 							$respuesta = $respuesta.$r['contraseña'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td'>";
+						$respuesta = $respuesta."<td class='td'data-label='Tipo'>";
 							$respuesta = $respuesta.$r['tipoUsuario'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td tbBoton'>";
+						$respuesta = $respuesta."<td class='td tbBoton' >";
 							$respuesta = $respuesta."<button type='button'
 							class='botonTabla botonTablaE' 
 							onclick='pone(this,0)'
@@ -241,7 +245,7 @@ class gestionarUsuario extends datos{
 	}
 	
 	
-	private function existe($cedulaUsuario){
+	private function existeCedula($cedulaUsuario){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
@@ -264,71 +268,30 @@ class gestionarUsuario extends datos{
 			return false;
 		}
 	}
-	
-	function buscar(){
+	private function existeUsuario($usuario){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$r = array();
-		$columnas=['cedulaUsuario','nombreUsuario','apellidoUsuario','telefonoUsuario','usuario','contraseña','tipoUsuario'];
 		try{
-
-				$resultado= $co->query("Select * from usuarios where ".$columnas[0]." like '$this->busqueda%'");
 			
-				if($resultado){
+			$resultado = $co->query("Select * from usuarios where usuario='$usuario'");
+			
+			
+			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+			if($fila){
+
+				return true;
+			    
+			}
+			else{
 				
-					$respuesta = '';
-					foreach($resultado as $r){
-						
-						$respuesta = $respuesta."<tr class='tr'>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['cedulaUsuario'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['nombreUsuario'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['apellidoUsuario'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['telefonoUsuario'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['usuario'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['contraseña'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td'>";
-								$respuesta = $respuesta.$r['tipoUsuario'];
-							$respuesta = $respuesta."</td>";
-							$respuesta = $respuesta."<td class='td tbBoton'>";
-								$respuesta = $respuesta."<button type='button'
-								class='botonTabla botonTablaE' 
-								onclick='pone(this,0)'
-								><i class='fi fi-br-pencil iconTabla'></i></button><br/>";
-								$respuesta = $respuesta."<button type='button'
-								class='botonTabla' 
-								onclick='pone(this,1)'
-								><i class='fi fi-br-trash-xmark iconTabla'></i></button><br/>";
-							$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."</tr>";
-					}  
-					
-					$r['resultado'] = 'buscar';
-					$r['mensaje'] =  $respuesta;
-				}
-				else{
-					$r['resultado'] = 'buscar';
-					$r['mensaje'] =  '';
-				}
-
-
+				return false;;
+			}
+			
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
-			$r['mensaje'] =  $e->getMessage();
+			return false;
 		}
-		return $r;
-	} 
+	}
+	
 
 }
 ?>

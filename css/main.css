@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 :root{
-    --gris-principal:#131524;
+    --azul-principal: linear-gradient(to top, #004AAD 0%, #1e3c72 1%, #2a5298 100%);
+    --azul-principal-2: linear-gradient(to left, #004AAD 0%, #1e3c72 1%, #2a5298 100%);
     --blanco-principal: rgb(255, 255, 255);
-    --gradiente-fondo: linear-gradient(to right, #243949 0%, #426988 100%);
-    --gradiente-icon:  linear-gradient(135deg, hsla(131, 100%, 44%, 1) 15%, hsla(57, 100%, 50%, 1) 100%);
+    --gradiente-fondo: rgb(214, 214, 214);
+    --gradiente-fondo-2: linear-gradient(to left, rgba(214, 214, 214, 0.74) 0%, rgba(214, 214, 214, 0.74) 100%);
+    --gradiente-icon: linear-gradient(to right, #ff9900 0%, #ffbb00 100%);
     --fuente-principal: "Outfit", sans-serif;
+    --azul: #004AAD;
 }
+
+
+
 
 .conteinerPadre{
     display: flex;
-    background: var(--gradiente-fondo);
 }
 .conteinerHijo{
     display: flex;
@@ -18,9 +23,10 @@
     background-color: transparent;
 }
 .content{
-    background-color: transparent;
     height: calc(100vh - 50px);
     width: calc(100vw - 250px);
+    background-size: cover; 
+    background-image: var(--gradiente-fondo-2), url(logofondo.jpg); 
 }
 .tituloBox{
     width: 100%;
@@ -30,13 +36,15 @@
     justify-content: space-between;
 }
 
+
 .titulo{
-    color: var(--blanco-principal);
+    color: var(--azul);
     font-weight: 600;
     font-family: var(--fuente-principal);
     margin-left: 40px;
     font-size: 3rem;
 }
+
 
 .titulo span{
     background: var(--gradiente-icon);
@@ -64,10 +72,10 @@
     width: 220px;
     height: 40px;
     background-color: transparent;
-    border: 3px solid var(--blanco-principal);
+    border: 3px solid var(--azul);
     border-radius: 10px;
     outline: none;
-    color: var(--blanco-principal);
+    color: var(--azul);
     padding: 20px 50px 20px 20px; 
     font-family: var(--fuente-principal);
     font-size: 1.1rem;
@@ -113,27 +121,27 @@
 
 .trH{
     width: 100%;
-    height: 40px;
+    height: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: center;
     align-items: center;
-    color: var(--blanco-principal);
+    color: var(--azul);
     font-family: var(--fuente-principal);
-    padding: 10px 0px 8px 0px;
+    padding: 0px 10px 0px 15px;
     font-weight: 500;
     text-align: center;
     font-size: .9rem;
-    border-bottom: 3px solid var(--blanco-principal);
+    border-bottom: 3px solid var(--azul);
 }
 .tr{
     width: 100%;
-    height: 12.5%;
+    height: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: center;
     align-items: center;
-    color: var(--blanco-principal);
+    color: var(--azul);
     font-family: var(--fuente-principal);
     padding: 0px 10px 0px 10px;
     font-weight: 500;
@@ -145,17 +153,42 @@
 .bodyTabla{
     height: calc(100% - 40px);
     width: 100%;
+    overflow: auto;
+    margin-top: 3px;
+}
+
+.bodyTabla::-webkit-scrollbar{
+    width: 5px;
+    background-color: transparent;
+}
+
+.bodyTabla::-webkit-scrollbar-thumb{
+    background: rgba(55, 0, 255, 0.089);
+    -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+        border-radius: 20px;
+        border: 1px solid var(--azul);
 }
 
 .th{
-    width: 100%;
+    width:13%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    white-space: nowrap;
     
 }
 
 .td{
-    width: 100%;
+    width: 13%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    white-space: nowrap;
     
 }
 
@@ -164,18 +197,25 @@
 }
 
 .tr:nth-child(even){
-    background: rgba(255, 255, 255, 0.192);
+    background: rgba(55, 0, 255, 0.089);
     -webkit-backdrop-filter: blur(50px);
         backdrop-filter: blur(50px);
+    color: var(--azul);
+}
+
+.tr:nth-child(odd){
+    background: rgba(255, 255, 255, 0.089);
+    -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+    color: var(--azul);
 }
 
 .tr:hover{
-    box-shadow: 0px 0px 18px 5px rgba(255,255,255,0.65);
-   /*  text-shadow: 0px 0px 13px rgb(255, 255, 255); */
+    box-shadow: 0px 0px 18px 5px rgba(0, 26, 255, 0.26);
 }
 
 .tbBoton{
-    width: 100%;
+    width: 12.5%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,9 +223,9 @@
 
 .botonTabla{
     margin: 8px 10px 8px 0px;
-    padding: 1px 15px;
+    padding: 5px 15px 2px 15px;
     border: 2px solid #d30000;
-    background-color: transparent;
+    background-color: #d30000;
     color: var(--blanco-principal);
     border-radius: 5px;
     display: flex;
@@ -196,37 +236,21 @@
 
 .botonTablaE{
     border: 2px solid #00d300;
-    background-color: transparent;
+    background-color: #00d300;
 }
 
 .botonTabla:hover{
-    box-shadow: 0px 0px 18px 5px rgba(255,255,255,0.65);
-    text-shadow: 0px 0px 13px rgb(255, 255, 255);
+    box-shadow: 0px 0px 18px 5px rgba(110, 110, 110, 0.74);
+    text-shadow: 0px 0px 13px rgb(110, 110, 110);
 }
 
-.botonera{
-    width: 300px;
-}
-.botonera ul{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.botonera ul li button{
-    padding: 5px 10px;
-    border: 3px solid var(--blanco-principal);
-    background: transparent;
-    border-radius: 10px;
-    color: var(--blanco-principal);
-    font-family: var(--fuente-principal);
-    font-weight: 500;
-    font-size: .9rem;
+.bMenu{
+    display: none;
 }
 
-.botonera ul li span{
-    padding: 5px 10px;
-    color: var(--blanco-principal);
-    font-family: var(--fuente-principal);
-    font-weight: 500;
-    font-size: .9rem;
+.botonR{
+    display: none;
 }
+
+
+
