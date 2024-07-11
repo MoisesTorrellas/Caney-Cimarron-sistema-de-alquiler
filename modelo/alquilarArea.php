@@ -13,6 +13,7 @@ class alquilarArea extends datos{
     private $montoAlquiler;
     private $busqueda;
 	private $busquedaCliente;
+	private $cantidadBienAlquiler;
 
     function set_numAlquiler($valor){
 		$this->numAlquiler = $valor;
@@ -53,6 +54,9 @@ class alquilarArea extends datos{
 
 	function set_busquedaCliente($valor){
 		$this->busquedaCliente = $valor;
+	}
+	function set_cantidadBienAlquiler($valor){
+		$this->cantidadBienAlquiler = $valor;
 	}
 
 	/*----------------------------GET----------------------------*/
@@ -96,12 +100,14 @@ class alquilarArea extends datos{
 	function get_busquedaCliente(){
 		return $this->busquedaCliente;
 	}
-
+	function get_cantidadBienAlquiler(){
+		return $this->cantidadBienAlquiler;
+	}
 	
-
-    function incluir(){
+	
+	function incluir(){
 		$r = array();
-		if(!$this->existefecha($this->fechaAlquiler)){
+		if(!$this->existeNumero($this->numAlquiler) && !$this->existeFecha($this->fechaAlquiler)){
 			$co = $this->conecta();
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			try {
@@ -134,9 +140,93 @@ class alquilarArea extends datos{
                 $r['mensaje'] =  $e->getMessage();
 			}
 		}
-	    if($this->existefecha($this->fechaAlquiler)){
+		else if($this->existeFecha($this->fechaAlquiler)){
 			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe la fecha';
+			$r['mensaje'] =  'Ya existe un alquiler con esa Fecha';
+		}
+		else if($this->existeNumero($this->numAlquiler)){
+			$r['resultado'] = 'incluir';
+			$r['mensaje'] =  'Ya existe un alquiler con ese numero';
+		}
+		return $r;
+	}
+
+	function eliminar(){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+		if($this->existeNumero($this->numAlquiler)){
+			try {
+					$co->query("delete from alquiler 
+						where
+						numAlquiler = '$this->numAlquiler'
+						");
+						$r['resultado'] = 'eliminar';
+			            $r['mensaje'] =  'Alquiler Eliminado';
+			} catch(Exception $e) {
+				$r['resultado'] = 'error';
+			    $r['mensaje'] =  $e->getMessage();
+			}
+		}
+		else{
+			$r['resultado'] = 'eliminar';
+			$r['mensaje'] =  'No existe el Alquiler';
+		}
+		return $r;
+	}
+
+	function consultar(){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$r = array();
+		try{
+			
+			$resultado= $co->query('SELECT alquiler.*, cliente.nombreCliente, cliente.apellidoCliente, area.nombreArea FROM alquiler INNER JOIN cliente ON alquiler.cedulaCliente = cliente.cedulaCliente INNER JOIN asignararea ON alquiler.numAlquiler = asignararea.numAlquiler INNER JOIN area ON asignararea.numArea = area.numArea ORDER BY alquiler.numAlquiler ASC');
+
+			if($resultado){
+				
+				$respuesta = '';
+				foreach($resultado as $r){
+					
+					$respuesta = $respuesta."<tr class='tr'>";
+						$respuesta = $respuesta."<td class='td'data-label='Numero de Alquiler'>";
+							$respuesta = $respuesta.$r['numAlquiler'];
+						$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."<td class='td' data-label='Area'>";
+							$respuesta = $respuesta.$r['nombreArea'];
+						$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."<td class='td'data-label='Cliente'>";
+							$respuesta = $respuesta.$r['nombreCliente'].' '.$r['apellidoCliente'];
+						$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."<td class='td'data-label='Cantidad de Personas'>";
+							$respuesta = $respuesta.$r['cantPersonaAlquiler'];
+						$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."<td class='td'data-label='Fecha'>";
+							$respuesta = $respuesta.$r['fechaAlquiler'];
+						$respuesta = $respuesta."</td>";
+						$respuesta = $respuesta."<td class='td'data-label='Monto'>";
+							$respuesta = $respuesta.$r['montoAlquiler'];
+						$respuesta = $respuesta."</td>";;
+						$respuesta = $respuesta."<td class='td tbBoton' >";
+							$respuesta = $respuesta."<button type='button'
+							class='botonTabla' 
+							onclick='pone(this,1)'
+						    ><i class='fi fi-br-trash-xmark iconTabla'></i></button><br/>";
+						$respuesta = $respuesta."</td>";
+					$respuesta = $respuesta."</tr>";
+				}  
+				
+			    $r['resultado'] = 'consultar';
+				$r['mensaje'] =  $respuesta;
+			}
+			else{
+				$r['resultado'] = 'consultar';
+				$r['mensaje'] =  '';
+			}
+			
+		}catch(Exception $e){
+			$r['resultado'] = 'error';
+			$r['mensaje'] =  $e->getMessage();
 		}
 		return $r;
 	}
@@ -147,7 +237,7 @@ class alquilarArea extends datos{
 		$r = array();
 		try{
 			
-			$resultado= $co->query("Select * from Cliente where cedulaCliente like '%$this->busquedaCliente%' 
+			$resultado= $co->query("Select * from cliente where cedulaCliente like '%$this->busquedaCliente%' 
 									or nombreCliente like '%$this->busquedaCliente%'
 									or apellidoCliente like '%$this->busquedaCliente%'");
 
@@ -274,7 +364,7 @@ class alquilarArea extends datos{
 		$r = array();
 		try{
 			
-			$resultado= $co->query("Select * from Trabajador where cedulaTrabajador like '%$this->busqueda%' 
+			$resultado= $co->query("Select * from trabajador where cedulaTrabajador like '%$this->busqueda%' 
 									or nombreTrabajador like '%$this->busqueda%'
 									or apellidoTrabajador like '%$this->busqueda%'");
 
@@ -311,13 +401,12 @@ class alquilarArea extends datos{
 		return $r;
 	}
 
-	
-    private function existefecha($fechaAlquiler){
+	private function existeNumero($numAlquiler){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
 			
-			$resultado = $co->query("Select * from usuarios where fechaAlquiler='$fechaAlquiler'");
+			$resultado = $co->query("Select * from alquiler where numAlquiler='$numAlquiler'");
 			
 			
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
@@ -335,11 +424,30 @@ class alquilarArea extends datos{
 			return false;
 		}
 	}
+	private function existeFecha($fechaAlquiler){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		try{
+			
+			$resultado = $co->query("Select * from alquiler where fechaAlquiler='$fechaAlquiler'");
+			
+			
+			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+			if($fila){
 
+				return true;
+			    
+			}
+			else{
+				
+				return false;;
+			}
+			
+		}catch(Exception $e){
+			return false;
+		}
+	}
 	
 
 }
-
-
-
 ?>

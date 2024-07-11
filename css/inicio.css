@@ -61,6 +61,10 @@ ul {
     
 }
 
+.form{
+    width: auto;
+}
+
 .formulario{
     position: absolute;
     width: 300px;

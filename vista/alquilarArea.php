@@ -24,7 +24,7 @@
                         </form>
                     </div>
                     <div class="botonBox">
-                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-user-add iconB'></i>Nuevo Alquier</button>
+                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-calendar-plus iconB'></i>Nuevo Alquier</button>
                     </div>
                 </div>
                 <div class="containerTabla">
@@ -33,8 +33,8 @@
                             <thead class="headTabla">
                                 <tr class="trH">
                                     <th class="th">Numero de Alquiler</th>
-                                    <th class="th">Codigo de Area</th>
-                                    <th class="th">Cedula del Cliente</th>
+                                    <th class="th">Area</th>
+                                    <th class="th">Cliente</th>
                                     <th class="th">Cantidad de personas</th>
                                     <th class="th">Fecha</th>
                                     <th class="th">Monto</th>
@@ -49,7 +49,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="modal-contenedor">
         <div class="modal2 modal-close">
@@ -70,8 +69,6 @@
                                     <span id="snumAlquiler" class=""></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="form-box">
                                 <label class="form-name form-name-modi">Fecha</label>
                                 <input type="date" name="fechaAlquiler" id="fechaAlquiler" required>
@@ -79,6 +76,8 @@
                                     <span id="sfechaAlquiler" class=""></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="form-box">
                                 <input type="text" name="cantPersonaAlquiler" id="cantPersonaAlquiler" required>
                                 <label class="form-name">Cantidad de Personas</label>
@@ -95,27 +94,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" id="nombreCliente" name="nombreCliente" required>
                                 <label class="form-name">Cliente</label>
                                 <input type="hidden" id="cedulaCliente" name="cedulaCliente"  required>
                                 <button type="button" class="botonF" id="modalCliente" name="modalCliente">Asignar Cliente</button>
+                                <div class="span">
+                                    <span id="snombreCliente" class=""></span>
+                                </div>
                             </div>
-                            <div class="form-box  form-box1">
+                            <div class="form-box  ">
                                 <input type="text" id="nombreArea" name="nombreArea" required>
                                 <label class="form-name">Area</label>
                                 <input type="hidden" id="numArea" name="numArea"  required>
                                 <button type="button" class="botonF" id="modalArea" name="modalArea">Asignar Area</button>
+                                <div class="span">
+                                    <span id="snombreArea" class=""></span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" id="nomBien" name="nomBien">
                                 <label class="form-name">Bienes</label>
                                 <input type="text" id="codBien" name="codBien" style="display:none">
                                 <button type="button" class="botonF" id="modalBien" name="modalBien">Asignar Bienes</button>
                             </div>
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" id="nombreTrabajador" name="nombreTrabajador">
                                 <label class="form-name">Trabajadores</label>
                                 <input type="text" id="cedulaTrabajador" name="cedulaTrabajador" style="display:none">
@@ -160,14 +165,17 @@
         <div class="modalCliente modal-close">
             <div class="contentModal">
                 <div class="headerModal">
-                    <h2 class="titleModal" id="titleModalCliente"></h2>
-                    <div id="tablapersona_filter" class="dataTables_filter buscador">
+                    <div class="responsiveContenedor">
+                        <h2 class="titleModal" id="titleModalCliente"></h2>
+                    <div id="tablapersona_filter" class="dataTables_filter buscadorModal">
                         <form method="post" id="f" autocomplete="off">
                             <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                             <input id="busquedaCliente" name="busquedaCliente" type="text" placeholder="Buscar...">
                             <i class="fi fi-br-search lupa"></i>
                         </form>
                     </div>
+                </div>
+                    
                     <button type="button" class="closes" id="closesCliente">X</button>
                 </div>
                 <div class="form-contenedor">
@@ -191,7 +199,7 @@
             <div class="contentModal">
                 <div class="headerModal">
                     <h2 class="titleModal" id="titleModalBien"></h2>
-                    <div id="tablapersona_filter" class="dataTables_filter buscador">
+                    <div id="tablapersona_filter" class="dataTables_filter buscadorModal">
                         <form method="post" id="f" autocomplete="off">
                             <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                             <input id="busqueda" name="busqueda" type="text" placeholder="Buscar...">
@@ -222,7 +230,7 @@
             <div class="contentModal">
                 <div class="headerModal">
                     <h2 class="titleModal" id="titleModalTrabajador"></h2>
-                    <div id="tablapersona_filter" class="dataTables_filter buscador">
+                    <div id="tablapersona_filter" class="dataTables_filter buscadorModal">
                         <form method="post" id="f" autocomplete="off">
                             <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                             <input id="busqueda" name="busqueda" type="text" placeholder="Buscar...">

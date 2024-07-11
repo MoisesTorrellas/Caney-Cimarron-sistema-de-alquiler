@@ -2,77 +2,68 @@
 
 require_once('modelo/datos.php');
 
-class gestionarArea extends datos{
+class gestionarCargo extends datos{
 
-    private $numArea;
-	private $nombreArea;
-    private $horarioArea;
-    private $busqueda;
 	
-	function set_numArea($valor){
-		$this->numArea = $valor;
-	}
-	function set_nombreArea($valor){
-		$this->nombreArea = $valor;
+	private $codigoCargo;
+    private $nombreCargo;
+	private $busqueda;
+	
+	function set_codigoCargo($valor){
+		$this->codigoCargo = $valor;
 	}
 	
-	function set_horarioArea($valor){
-		$this->horarioArea = $valor;
+	function set_nombreCargo($valor){
+		$this->nombreCargo = $valor;
 	}
 
 	function set_busqueda($valor){
 		$this->busqueda = $valor;
 	}
+
+
 	
 /* ------------------------GET------------------------ */
-	function get_numArea(){
-		return $this->numArea;
+	function get_codigoCargo(){
+		return $this->codigoCargo;
 	}
 	
-	function get_nombrearea(){
-		return $this->nombreArea;
-	}
-	
-	function get_horarioArea(){
-		return $this->horarioArea;
+	function get_nombreCargo(){
+		return $this->nombreCargo;
 	}
 
 	function get_busqueda(){
 		return $this->busqueda;
 	}
 	
-	
 	function incluir(){
 		$r = array();
-		if(!$this->existeNumero($this->numArea) && !$this->existeNombre($this->nombreArea)){
+		if(!$this->existeCodigo($this->codigoCargo) && !$this->existeNombre($this->nombreCargo)){
 			$co = $this->conecta();
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			try {
-					$co->query("Insert into area (
-						numArea,
-						nombreArea,
-						horarioArea
+					$co->query("Insert into cargo (
+						codigoCargo,
+						nombreCargo
 						)
 						Values(
-						'$this->numArea',
-						'$this->nombreArea',
-						'$this->horarioArea'
+						'$this->codigoCargo',
+						'$this->nombreCargo'
 						)");
 						$r['resultado'] = 'incluir';
-                        $r['mensaje'] =  'Area Registrada';
+                        $r['mensaje'] =  'Cargo Registrado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
                 $r['mensaje'] =  $e->getMessage();
 			}
 		}
-		else if($this->existeNumero($this->numArea)){
+		else if($this->existeCodigo($this->codigoCargo)){
 			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe un Area con ese numero';
+			$r['mensaje'] =  'Ya existe el codigo';
 		}
-
-		else if($this->existeNombre($this->nombreArea)){
+		else if($this->existeNombre($this->nombreCargo)){
 			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe un Area con ese nombre';
+			$r['mensaje'] =  'Ya existe el Cargo';
 		}
 		return $r;
 	}
@@ -81,32 +72,16 @@ class gestionarArea extends datos{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		if($this->existeNumero($this->numArea)){
+		if($this->existeCodigo($this->codigoCargo)){
 			try {
-					$co->query("Update area set 
-                    numArea = '$this->numArea'
-					where
-						numArea = '$this->numArea';
-						");
-					$co->query("Update area set 
-                    horarioArea = '$this->horarioArea'
-					where
-						numArea = '$this->numArea';
-						");
-
-					if(!$this->existeNombre($this->nombreArea)){
-							$co->query("Update area set 
-						nombreArea = '$this->nombreArea'
+					$co->query("Update cargo set 
+                    codigoCargo = '$this->codigoCargo',
+                    nombreCargo = '$this->nombreCargo'
 						where
-							numArea = '$this->numArea';
-							");
-
-							
-					}
-					
-					$r['resultado'] = 'modificar';
-					$r['mensaje'] =  'Area Modificada';
-					
+						codigoCargo = '$this->codigoCargo'
+						");
+						$r['resultado'] = 'modificar';
+			            $r['mensaje'] =  'Cargo Modificado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
 			    $r['mensaje'] =  $e->getMessage();
@@ -114,7 +89,7 @@ class gestionarArea extends datos{
 		}
 		else{
 			$r['resultado'] = 'modificar';
-			$r['mensaje'] =  'Area no registrada';
+			$r['mensaje'] =  'Cargo no registrado';
 		}
 		return $r;
 	}
@@ -123,14 +98,14 @@ class gestionarArea extends datos{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		if($this->existeNumero($this->numArea)){
+		if($this->existeCodigo($this->codigoCargo)){
 			try {
-					$co->query("delete from area 
+					$co->query("delete from cargo 
 						where
-						numArea = '$this->numArea'
+						codigoCargo = '$this->codigoCargo'
 						");
 						$r['resultado'] = 'eliminar';
-			            $r['mensaje'] =  'Area Eliminada';
+			            $r['mensaje'] =  'Cargo Eliminado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
 			    $r['mensaje'] =  $e->getMessage();
@@ -138,7 +113,7 @@ class gestionarArea extends datos{
 		}
 		else{
 			$r['resultado'] = 'eliminar';
-			$r['mensaje'] =  'No existe area';
+			$r['mensaje'] =  'No existe el Cargo';
 		}
 		return $r;
 	}
@@ -150,9 +125,8 @@ class gestionarArea extends datos{
 		$r = array();
 		try{
 			
-			$resultado= $co->query("Select * from area where numArea like '%$this->busqueda%' 
-									or nombreArea like '%$this->busqueda%'
-									or horarioArea like '%$this->busqueda%'");
+			$resultado= $co->query("Select * from cargo where codigoCargo like '%$this->busqueda%' 
+									or nombreCargo like '%$this->busqueda%'");
 
 			if($resultado){
 				
@@ -160,16 +134,13 @@ class gestionarArea extends datos{
 				foreach($resultado as $r){
 					
 					$respuesta = $respuesta."<tr class='tr'>";
-						$respuesta = $respuesta."<td class='td' data-label='Numero de Area'>";
-							$respuesta = $respuesta.$r['numArea'];
+						$respuesta = $respuesta."<td class='td'data-label='Codigo del Cargo'>";
+							$respuesta = $respuesta.$r['codigoCargo'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td' data-label='Nombre de Area'>";
-							$respuesta = $respuesta.$r['nombreArea'];
+						$respuesta = $respuesta."<td class='td' data-label='Nombre del Cargo'>";
+							$respuesta = $respuesta.$r['nombreCargo'];
 						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td' data-label='Horario'>";
-							$respuesta = $respuesta.$r['horarioArea'];
-						$respuesta = $respuesta."</td>";
-						$respuesta = $respuesta."<td class='td tbBoton'>";
+						$respuesta = $respuesta."<td class='td tbBoton' >";
 							$respuesta = $respuesta."<button type='button'
 							class='botonTabla botonTablaE' 
 							onclick='pone(this,0)'
@@ -198,12 +169,12 @@ class gestionarArea extends datos{
 	}
 	
 	
-	private function existeNumero($numArea){
+	private function existeCodigo($codigoCargo){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
 			
-			$resultado = $co->query("Select * from area where numArea='$numArea'");
+			$resultado = $co->query("Select * from cargo where codigoCargo='$codigoCargo'");
 			
 			
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
@@ -221,13 +192,12 @@ class gestionarArea extends datos{
 			return false;
 		}
 	}
-
-	private function existeNombre($nombreArea){
+	private function existeNombre($nombreCargo){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
 			
-			$resultado = $co->query("Select * from area where nombreArea='$nombreArea'");
+			$resultado = $co->query("Select * from cargo where nombreCargo='$nombreCargo'");
 			
 			
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
@@ -245,6 +215,8 @@ class gestionarArea extends datos{
 			return false;
 		}
 	}
+	
 
 }
 ?>
+ 

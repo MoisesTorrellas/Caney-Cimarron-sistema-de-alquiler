@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="fondo">
-        <form method="post" action="">
+        <form method="post" action="" class="form">
         <input type="text" name="accion" id="accion" style="display: none;">
             <div class="contenedor">
                 <div class="contenedor-saludo">

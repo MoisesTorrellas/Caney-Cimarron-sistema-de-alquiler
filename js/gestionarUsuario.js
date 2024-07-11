@@ -1,11 +1,12 @@
-let cerrar = document.querySelectorAll(".closes")[0];
-let modal = document.querySelectorAll(".modal2")[0];
-let modalc = document.querySelectorAll(".modal-contenedor")[0];
-let titulo = document.querySelectorAll(".titulo")[0];
-let botonNav = document.querySelectorAll(".botonNav")[0];
+
+var cerrar = document.querySelectorAll(".closes")[0];
+var modal = document.querySelectorAll(".modal2")[0];
+var modalc = document.querySelectorAll(".modal-contenedor")[0];
+var titulo = document.querySelectorAll(".titulo")[0];
+var botonNav = document.querySelectorAll(".botonNav")[0];
 document.getElementById("busqueda").addEventListener("keyup", consultar);
-let botonMenu = document.querySelector('.bMenu');
-let menu = document.querySelector('.barraLateral');
+var botonMenu = document.querySelector('.bMenu');
+var menu = document.querySelector('.barraLateral');
 
 $(botonMenu).on("click", function () {
 	menu.classList.toggle("menuShow")

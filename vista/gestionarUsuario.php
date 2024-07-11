@@ -10,7 +10,7 @@
     <div class="conteinerPadre">
         <?php include('comunes/navbarLateral.php'); ?>
         <div class="conteinerHijo">
-            <?php include('comunes/navbarsuperior.php'); ?>
+            <?php include('comunes/navbarSuperior.php'); ?>
             <div class="content">
                 <div class="tituloBox">
                     <h1 class="titulo">Gestionar Usuario<span>.</span></h1>

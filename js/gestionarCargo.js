@@ -2,7 +2,7 @@ var cerrar = document.querySelectorAll(".closes")[0];
 var modal = document.querySelectorAll(".modal2")[0];
 var modalc = document.querySelectorAll(".modal-contenedor")[0];
 var titulo= document.querySelectorAll(".titulo")[0];
-var botonNav= document.querySelectorAll(".botonNav")[1];
+var botonNav= document.querySelectorAll(".boton-nav-hijo")[1];
 document.getElementById("busqueda").addEventListener("keyup", consultar);
 var botonMenu = document.querySelector('.bMenu');
 var menu = document.querySelector('.barraLateral');
@@ -11,7 +11,7 @@ $(botonMenu).on("click", function () {
 	menu.classList.toggle("menuShow")
 });
 
-	if($(titulo).text()=="Gestionar Cliente."){
+	if($(titulo).text()=="Gestionar Cargos."){
 		botonNav.classList.toggle("botonNavUsuario")
 	}
 
@@ -54,94 +54,60 @@ $(document).ready(function(){
 
 	consultar();
 
-	//VALIDACION DE CEDULA
-	$("#cedulaCliente").on("keypress",function(e){
+	$("#codigoCargo").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 	
-	$("#cedulaCliente").on("keyup",function(){
-		validarkeyup(/^[0-9]{7,8}$/,$(this),
-		$("#scedulaCliente"),"El formato debe ser 9999999 ");
+	$("#codigoCargo").on("keyup",function(){
+		validarkeyup(/^[0-9]{1,5}$/,$(this),
+		$("#scodigoCargo"),"El formato debe ser 99999 ");
 	});
 	
 	//VALIDACION DEL NOMBRE
-	$("#nombreCliente").on("keypress",function(e){
+	$("#nombreCargo").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 	
-	$("#nombreCliente").on("keyup",function(){
+	$("#nombreCargo").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#snombreCliente"),"Solo letras  entre 3 y 30 caracteres");
+		$(this),$("#snombreCargo"),"Solo letras  entre 3 y 30 caracteres");
 	});
-	//VALIDACION DE APELLIDO
-	$("#apellidoCliente").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
-	
-	$("#apellidoCliente").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#sapellidoCliente"),"Solo letras  entre 3 y 30 caracteres");
-	});
-	//VALIDACION DE TELEFONO
-    $("#telefonoCliente").on("keypress",function(e){
-		validarkeypress(/^[0-9\-]*$/,e);
-	});
-
-	$("#telefonoCliente").on("keyup",function(){
-		validarkeyup(/^[0-9]{4}[-][0-9]{7}$/,
-		$(this),$("#stelefonoCliente"),"El formato es 0000-000000");
-	});
-	//VALIDACION DEL USERNAME
-    $("#direccionCliente").on("keypress",function(e){
-		validarkeypress(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
-	
-	$("#direccionCliente").on("keyup",function(){
-		validarkeyup(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,100}$/,
-		$(this),$("#sdireccionCliente"),"Solo letras y numeros entre 3 y 100 caracteres");
-	});
-	
 	//CONTROL DE BOTONES 
 $("#proceso").on("click",function(){
 
-	//CONTROL DE BOTON REGISTRAR Cliente
-	if($(this).text()=="Registrar Cliente"){
+	//CONTROL DE BOTON REGISTRAR CArgo
+	if($(this).text()=="Registrar Cargo"){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','incluir');
-			datos.append('cedulaCliente',$("#cedulaCliente").val());
-			datos.append('nombreCliente',$("#nombreCliente").val());
-			datos.append('apellidoCliente',$("#apellidoCliente").val());
-			datos.append('direccionCliente',$("#direccionCliente").val());
-			datos.append('telefonoCliente',$("#telefonoCliente").val());
+			datos.append('codigoCargo',$("#codigoCargo").val());
+			datos.append('nombreCargo',$("#nombreCargo").val());
 			enviaAjax(datos);
 		}
 	}
-	//CONTROL DE BOTON MODIFICAR Cliente
-	else if($(this).text()=="Modificar Cliente"){
+	//CONTROL DE BOTON MODIFICAR Cargo
+	else if($(this).text()=="Modificar Cargo"){
 		if(validarenvio()){
 			var datos = new FormData();
 			datos.append('accion','modificar');
-			datos.append('cedulaCliente',$("#cedulaCliente").val());
-			datos.append('nombreCliente',$("#nombreCliente").val());
-			datos.append('apellidoCliente',$("#apellidoCliente").val());
-			datos.append('direccionCliente',$("#direccionCliente").val());
-			datos.append('telefonoCliente',$("#telefonoCliente").val());
+			datos.append('codigoCargo',$("#codigoCargo").val());
+			datos.append('nombreCargo',$("#nombreCargo").val());
+		
 			enviaAjax(datos);
 		}
 	}
-	//CONTROL DE BOTON ELIMINAR Cliente
-	if($(this).text()=="Eliminar Cliente"){
-		if(validarkeyup(/^[0-9]{7,8}$/,$("#cedulaCliente"),
-		$("#scedulaCliente"),"El formato debe ser 9999999")==0){
-		muestraMensaje("La cedula debe coincidir con el formato <br/>"+ 
-						"99999999");	
+	//CONTROL DE BOTON ELIMINAR Cargo
+	if($(this).text()=="Eliminar Cargo"){
+		if(validarkeyup(/^[0-9]{1,5}$/,$("#codigoCargo"),
+		$("#scodigoCargo"),"El formato debe ser 999")==0){
+		muestraMensaje("La codigo debe coincidir con el formato <br/>"+ 
+						"999");	
 		
 		}
 		else{
 			var datos = new FormData();
 			datos.append('accion','eliminar');
-			datos.append('cedulaCliente',$("#cedulaCliente").val());
+			datos.append('codigoCargo',$("#codigoCargo").val());
 			enviaAjax(datos);
 		}
 	}
@@ -150,9 +116,9 @@ $("#proceso").on("click",function(){
 // ACCION DE CLICK AL PULSAR EL BOTON INCLUIR
 $("#incluir").on("click",function(){
 	limpia();
-	$("#proceso").text("Registrar Cliente");
+	$("#proceso").text("Registrar Cargo");
 	$("#titleModal").text("");
-	$("#titleModal").append("Registrar Cliente<span>.</span>");
+	$("#titleModal").append("Registrar Cargo<span>.</span>");
 	abrirModal();
 });
 
@@ -164,33 +130,18 @@ $("#incluir").on("click",function(){
 
 //VALIDACIONES DEL ENVIO
 function validarenvio(){
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedulaCliente"),
-		$("#scedulaCliente"),"El formato debe ser 9999999")==0){
+	if(validarkeyup(/^[0-9]{1,5}$/,$("#codigoCargo"),
+		$("#scodigoCargo"),"El formato debe ser 999")==0){
 		muestraMensaje("La cedula debe coincidir con el formato <br/>"+ 
-						"99999999");	
+						"999");	
 		return false;					
 	}	
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombreCliente"),$("#snombreCliente"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#nombreCargo"),$("#snombreCargo"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellidoCliente"),$("#sapellidoCliente"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
-	else if(validarkeyup(/^[0-9]{4}[-]{1}[0-9]{7}$/,
-		$("#telefonoCliente"),$("#stelefonoCliente"),"Ingrese un numero valido")==0){
-		muestraMensaje("Ingrese un telefono valido");
-		return false;	
-	}
-	else if(validarkeyup(/^[0-9\A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,100}$/,
-		$("#direccionCliente"),$("#sdireccionCliente"),"Solo letras y numeros entre 3 y 100 caracteres")==0){
-		muestraMensaje("Solo letras y numeros entre 3 y 100 caracteres");
-		return false;
-	}
-	
+
 	return true;
 }
 
@@ -242,20 +193,18 @@ function pone(pos,accion){
 
 	if(accion==0){
 		//$("#icon").classList('fi fi-br-user-add iconB');
-		$("#proceso").text("Modificar Cliente");
+		$("#proceso").text("Modificar Cargo");
 		$("#titleModal").text("");
-		$("#titleModal").append("Modificar Cliente<span>.</span>");
+		$("#titleModal").append("Modificar Cargo<span>.</span>");
 	}
 	else{
-		$("#proceso").text("Eliminar Cliente");
+		$("#proceso").text("Eliminar Cargo");
 		$("#titleModal").text("");
-		$("#titleModal").append("Eliminar Cliente<span>.</span>");
+		$("#titleModal").append("Eliminar Cargo<span>.</span>");
 	}
-	$("#cedulaCliente").val($(linea).find("td:eq(0)").text());
-	$("#nombreCliente").val($(linea).find("td:eq(1)").text());
-	$("#apellidoCliente").val($(linea).find("td:eq(2)").text());
-	$("#direccionCliente").val($(linea).find("td:eq(3)").text());
-	$("#telefonoCliente").val($(linea).find("td:eq(4)").text());
+	$("#codigoCargo").val($(linea).find("td:eq(0)").text());
+	$("#nombreCargo").val($(linea).find("td:eq(1)").text());
+
 	abrirModal()
 	
 }
@@ -281,28 +230,28 @@ function enviaAjax(datos) {
 			$("#resultadoconsulta").html(lee.mensaje);
 		}
 		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "INCLUIR" 
-		Y EL MENSAJE ES "Cliente REGISTRADO" CUNSULTA Y LIMPIA EL FORMULARIO*/
+		Y EL MENSAJE ES "TRABAJADOR REGISTRADO" CUNSULTA Y LIMPIA EL FORMULARIO*/
 		else if (lee.resultado == "incluir") {
 			muestraMensaje(lee.mensaje);
-			if(lee.mensaje=='Cliente Registrado'){
+			if(lee.mensaje=='Cargo Registrado'){
 				consultar();
 				limpia();
 			}
         }
 		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "MODIFICAR" 
-		Y EL MENSAJE ES "Cliente MODIFICADO" CUNSULTA Y CIERRA EL MODAL*/
+		Y EL MENSAJE ES "TRABAJADOR MODIFICADO" CUNSULTA Y CIERRA EL MODAL*/
 		else if (lee.resultado == "modificar") {
 			muestraMensaje(lee.mensaje);
-			if(lee.mensaje=='Cliente Modificado'){
+			if(lee.mensaje=='Cargo Modificado'){
 				consultar();
 				cerrarModal();
 			}
         }
 		/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "ELIMINAR" 
-		Y EL MENSAJE ES "Cliente ELIMINADO" CUNSULTA Y CIERRA EL MODAL*/
+		Y EL MENSAJE ES "TRABAJADOR ELIMINADO" CUNSULTA Y CIERRA EL MODAL*/
 		else if (lee.resultado == "eliminar") {
 			muestraMensaje(lee.mensaje);
-			if(lee.mensaje=='Cliente Eliminado'){
+			if(lee.mensaje=='Cargo Eliminado'){
 				consultar();
 				cerrarModal();
 			}
@@ -328,10 +277,8 @@ function enviaAjax(datos) {
 
 //FUNCION PARA LIMPIAR EL MODAL
 function limpia(){
-	$("#cedulaCliente").val("");
-	$("#nombreCliente").val("");
-	$("#apellidoCliente").val("");
-    $("#telefonoCliente").val("");
-    $("#direccionCliente").val("");
+	$("#codigoCargo").val("");
+	$("#nombreCargo").val("");
 
 }
+

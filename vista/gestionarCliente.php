@@ -24,7 +24,7 @@
                         </form>
                     </div>
                     <div class="botonBox">
-                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-user-add iconB'></i>Nuevo Cliente</button>
+                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-review iconB'></i>Nuevo Cliente</button>
                     </div>
                 </div>
                 <div class="containerTabla">
@@ -60,7 +60,7 @@
                     <form method="post" id="f" autocomplete="off">
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="row">
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" name="cedulaCliente" id="cedulaCliente" required>
                                 <label class="form-name">Cedula</label>
                                 <div class="span">
@@ -69,12 +69,12 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="form-box form-box1">
+                        <div class="form-box ">
                                 <input type="text" name="nombreCliente" id="nombreCliente" required>
                                 <label class="form-name">Nombre</label>
                                 <div class="span"><span id="snombreCliente" class=""></span></div>
                             </div>
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" name="apellidoCliente" id="apellidoCliente" required>
                                 <label class="form-name">Apellido</label>
                                 <div class="span"><span id="sapellidoCliente" class=""></span></div>
@@ -82,12 +82,12 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" name="direccionCliente" id="direccionCliente" required>
                                 <label class="form-name">Direccion</label>
                                 <div class="span"><span id="sdireccionCliente" class=""></span></div>
                             </div>
-                            <div class="form-box form-box1">
+                            <div class="form-box ">
                                 <input type="text" name="telefonoCliente" id="telefonoCliente" required>
                                 <label class="form-name">Telefono</label>
                                 <div class="span"><span id="stelefonoCliente" class=""></span></div>
