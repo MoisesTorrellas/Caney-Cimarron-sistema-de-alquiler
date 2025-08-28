@@ -24,7 +24,7 @@
                         </form>
                     </div>
                     <div class="botonBox">
-                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-user-add iconB'></i> Nuevo Trabajador</button>
+                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-employee-man iconB'></i> Nuevo Trabajador</button>
                     </div>
                 </div>
                 <div class="containerTabla">

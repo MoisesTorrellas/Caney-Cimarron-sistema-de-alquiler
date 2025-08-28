@@ -24,7 +24,7 @@
                         </form>
                     </div>
                     <div class="botonBox">
-                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-plate-utensils iconB'></i>Registrar Bienes</button>
+                        <button type="button" id="incluir" class="boton cta"><i class='fi fi-br-table-picnic iconB'></i>Registrar Bienes</button>
                     </div>
                 </div>
                 <div class="containerTabla">
@@ -59,7 +59,7 @@
                     <form method="post" id="f" autocomplete="off">
                         <input autocomplete="off" type="text" class="form-control" name="accion" id="accion" style="display: none;">
                         <div class="row">
-                            <div class="form-box form-box1">
+                            <div class="form-box">
                                 <input type="text" name="codBien" id="codBien" required>
                                 <label class="form-name">Codigo del Bien</label>
                                 <div class="span">
@@ -68,12 +68,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-box form-box1">
+                            <div class="form-box">
                                 <input type="text" name="nomBien" id="nomBien" required>
                                 <label class="form-name">Nombre</label>
                                 <div class="span"><span id="snomBien" class=""></span></div>
                             </div>
-                            <div class="form-box form-box1">
+                            <div class="form-box">
                                 <input type="text" name="cantBien" id="cantBien" required>
                                 <label class="form-name">Cantidad</label>
                                 <div class="span"><span id="scantBien" class=""></span></div>

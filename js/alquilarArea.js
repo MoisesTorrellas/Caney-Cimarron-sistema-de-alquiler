@@ -1,20 +1,19 @@
-let cerrar = document.querySelectorAll(".closes")[0];
-let modal = document.querySelectorAll(".modal2")[0];
-let modalc = document.querySelectorAll(".modal-contenedor")[0];
-let modalCliente = document.querySelectorAll(".modalCliente")[0];
-let modalcCliente = document.querySelectorAll(".modal-contenedorCliente")[0];
-let modalArea = document.querySelectorAll(".modalArea")[0];
-let modalcArea = document.querySelectorAll(".modal-contenedorArea")[0];
-let modalBien = document.querySelectorAll(".modalBien")[0];
-let modalcBien = document.querySelectorAll(".modal-contenedorBien")[0];
-let modalTrabajador = document.querySelectorAll(".modalTrabajador")[0];
-let modalcTrabajador = document.querySelectorAll(".modal-contenedorTrabajador")[0];
-let titulo = document.querySelectorAll(".titulo")[0];
-let botonHijo = document.querySelectorAll(".boton-nav-hijo")[1];
-document.getElementById("busqueda").addEventListener("keyup", consultar);
+var cerrar = document.querySelectorAll(".closes")[0];
+var modal = document.querySelectorAll(".modal2")[0];
+var modalc = document.querySelectorAll(".modal-contenedor")[0];
+var modalCliente = document.querySelectorAll(".modalCliente")[0];
+var modalcCliente = document.querySelectorAll(".modal-contenedorCliente")[0];
+var modalArea = document.querySelectorAll(".modalArea")[0];
+var modalcArea = document.querySelectorAll(".modal-contenedorArea")[0];
+var modalBien = document.querySelectorAll(".modalBien")[0];
+var modalcBien = document.querySelectorAll(".modal-contenedorBien")[0];
+var modalTrabajador = document.querySelectorAll(".modalTrabajador")[0];
+var modalcTrabajador = document.querySelectorAll(".modal-contenedorTrabajador")[0];
+var titulo = document.querySelectorAll(".titulo")[0];
+var botonHijo = document.querySelectorAll(".boton-nav-hijo")[3];
 document.getElementById("busquedaCliente").addEventListener("keyup", consultaCliente);
-let botonMenu = document.querySelector('.bMenu');
-let menu = document.querySelector('.barraLateral');
+var botonMenu = document.querySelector('.bMenu');
+var menu = document.querySelector('.barraLateral');
 
 $(botonMenu).on("click", function () {
 	menu.classList.toggle("menuShow")
@@ -108,7 +107,6 @@ function abrirModalTrabajador() {
 function consultar() {
 	var datos = new FormData();
 	datos.append('accion', 'consultar');
-	datos.append('busqueda', $("#busqueda").val());
 	enviaAjax(datos);
 }
 function consultaArea() {
@@ -139,20 +137,67 @@ function consultaBien() {
 
 $(document).ready(function () {
 
+	consultar();
 	consultaArea();
 	consultaCliente();
 	consultaBien(); 
 	consultaTrabajador();
+
+	$("#numAlquiler").on("keypress", function (e) {
+		validarkeypress(/^[0-9-\b]*$/, e);
+	});
+
+	$("#numAlquiler").on("keyup", function () {
+		validarkeyup(/^[0-9]{1,100}$/, $(this),
+			$("#snumAlquiler"), "Solo Numeros");
+	});
 
 	$("#fechaAlquiler").on("keyup",function(){
 		validarkeyup(/^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(\/|-|\.)0?2\3(?:29)$|^(?:(?:1[6-9]|[2-9]\d)?\d{2})(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:0?[1-9]|1\d|2[0-8])$/,
 		$(this),$("#sfechaAlquiler"),"Ingrese una fecha valida");
 	});
 
+	$("#cantPersonaAlquiler").on("keypress", function (e) {
+		validarkeypress(/^[0-9-\b]*$/, e);
+	});
+
+	$("#cantPersonaAlquiler").on("keyup", function () {
+		validarkeyup(/^[0-5]{1}[0-9]{1}$/, $(this),
+			$("#scantPersonaAlquiler"), "Solo Numeros, Maximo 59 personas");
+	});
+
+	$("#cantPersonaAlquiler").on("keypress", function (e) {
+		validarkeypress(/^[0-9-$\b]*$/, e);
+	});
+
+	$("#montoAlquiler").on("keyup", function () {
+		validarkeyup(/^[0-9]{1,100}[$]{1}$/, $(this),
+			$("#smontoAlquiler"), "Formato: 100$");
+	});
+
+	$("#nombreCliente").on("keypress", function (e) {
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/, e);
+	});
+
+	$("#nombreCliente").on("keyup", function () {
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,100}$/,
+			$(this), $("#snombreCliente"), "Nesecita asignar un cliente");
+	});
+
+	$("#nombreArea").on("keypress", function (e) {
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/, e);
+	});
+
+	$("#nombreArea").on("keyup", function () {
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,100}$/,
+			$(this), $("#snombreArea"), "Nesecita asignar un area");
+	});
+
+	
+
 
 	$("#proceso").on("click", function () {
 
-		//CONTROL DE BOTON REGISTRAR USUARIO
 		if ($(this).text() == "Registrar Alquiler") {
 			if (validarenvio()) {
 				var datos = new FormData();
@@ -168,7 +213,16 @@ $(document).ready(function () {
 				
 			
 		}
-		//CONTROL DE BOTON MODIFICAR USUARIO
+
+		if ($(this).text() == "Eliminar Alquiler") {
+			
+				var datos = new FormData();
+				datos.append('accion', 'eliminar');
+				datos.append('numAlquiler', $("#numAlquiler").val());
+				enviaAjax(datos);
+			
+		}
+		
 		
 	});
 	// ACCION DE CLICK AL PULSAR EL BOTON INCLUIR
@@ -285,11 +339,37 @@ function colocaArea(linea){
 	cerrarModalArea();
 }
 
-//VALIDACIONES DEL ENVIO
+
+
 function validarenvio() {
-	if(validarkeyup(/^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(\/|-|\.)0?2\3(?:29)$|^(?:(?:1[6-9]|[2-9]\d)?\d{2})(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:0?[1-9]|1\d|2[0-8])$/,
+	if (validarkeyup(/^[0-9]{1,100}$/, $("#numAlquiler"),
+		$("#snumAlquiler"), "Solo Numeros") == 0) {
+		muestraMensaje("Solo Numeros");
+		return false;
+	}
+	else if(validarkeyup(/^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(\/|-|\.)0?2\3(?:29)$|^(?:(?:1[6-9]|[2-9]\d)?\d{2})(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:0?[1-9]|1\d|2[0-8])$/,
 		$("#fechaAlquiler"),$("#sfechaAlquiler"),"Ingrese una fecha valida")==0){
 		muestraMensaje("Ingrese una fecha valida");
+		return false;
+	}
+	else if (validarkeyup(/^[0-5]{1}[0-9]{1}$/, $("#cantPersonaAlquiler"),
+		$("#scantPersonaAlquiler"), "Solo Numeros, Maximo 59 personas") == 0) {
+		muestraMensaje("Solo Numeros, Maximo 59 personas");
+		return false;
+	}
+	else if (validarkeyup(/^[0-9]{1,100}[$]{1}$/, $("#montoAlquiler"),
+		$("#smontoAlquiler"), "Formato: 100$") == 0) {
+		muestraMensaje("Formato: 100$");
+		return false;
+	}
+	else if (validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$("#nombreCliente"), $("#snombreCliente"), "Nesecita asignar un cliente") == 0) {
+		muestraMensaje("Nesecita asignar un cliente");
+		return false;
+	}
+	else if (validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$("#nombreArea"), $("#snombreArea"), "Nesecita asignar un area") == 0) {
+		muestraMensaje("Nesecita asignar un area");
 		return false;
 	}
 	return true;
@@ -303,6 +383,25 @@ function muestraMensaje(mensaje) {
 	setTimeout(function () {
 		$("#mostrarmodal").modal("hide");
 	}, 90000);
+
+}
+
+function pone(pos, accion) {
+
+	linea = $(pos).closest('tr');
+	if(accion==1) {
+		$("#proceso").text("Eliminar Alquiler");
+		$("#titleModal").text("");
+		$("#titleModal").append("Eliminar Alquiler<span>.</span>");
+	}
+	$("#numAlquiler").val($(linea).find("td:eq(0)").text());
+	$("#nombreArea").val($(linea).find("td:eq(1)").text());
+	$("#nombreCliente").val($(linea).find("td:eq(2)").text());
+	$("#cantPersonaAlquiler").val($(linea).find("td:eq(3)").text());
+	$("#montoAlquiler").val($(linea).find("td:eq(5)").text());
+	$("#fechaAlquiler").val($(linea).find("td:eq(4)").text());
+
+	abrirModal()
 
 }
 
@@ -355,11 +454,15 @@ function enviaAjax(datos) {
 			try {
 				var lee = JSON.parse(respuesta);
 
-				if (lee.resultado == "consultaArea") {
+				if (lee.resultado == "consultar") {
+					$("#resultadoconsulta").html(lee.mensaje);
+				}
+
+				else if (lee.resultado == "consultaArea") {
 					$("#consultaArea").html(lee.mensaje);
 				}
 
-				if (lee.resultado == "consultaCliente") {
+				else if (lee.resultado == "consultaCliente") {
 					$("#consultaCliente").html(lee.mensaje);
 				}
 				else if (lee.resultado == "consultaBien") {
@@ -368,12 +471,19 @@ function enviaAjax(datos) {
 				else if(lee.resultado == "consultaTrabajador"){
 					$("#consultaTrabajador").html(lee.mensaje);
 				}
-				/*CUANDO EL RESULTADO PROVENIENTE DEL MODELO ES "INCLUIR" 
-				Y EL MENSAJE ES "USUARIO REGISTRADO" CUNSULTA Y LIMPIA EL FORMULARIO*/
+				
 				else if (lee.resultado == "incluir") {
 					muestraMensaje(lee.mensaje);
 					if (lee.mensaje == 'Alquiler Registrado') {
+						consultar();
 						limpia();
+					}
+				}
+				else if (lee.resultado == "eliminar") {
+					muestraMensaje(lee.mensaje);
+					if (lee.mensaje == 'Alquiler Eliminado') {
+						consultar();
+						cerrarModal();
 					}
 				}
 				else if (lee.resultado == "error") {

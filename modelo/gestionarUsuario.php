@@ -131,12 +131,19 @@ class gestionarUsuario extends datos{
                     nombreUsuario = '$this->nombreUsuario',
                     apellidoUsuario = '$this->apellidoUsuario',
                     telefonoUsuario = '$this->telefonoUsuario',
-						usuario = '$this->usuario',
 						contraseña = '$this->contraseña',
 						tipoUsuario = '$this->tipoUsuario'
 						where
 						cedulaUsuario = '$this->cedulaUsuario'
 						");
+
+						if(!$this->existeUsuario($this->usuario)){
+							$co->query("Update usuarios set 
+						usuario = '$this->usuario'
+							where
+							cedulaUsuario = '$this->cedulaUsuario'
+							");
+						}
 						$r['resultado'] = 'modificar';
 			            $r['mensaje'] =  'Usuario Modificado';
 			} catch(Exception $e) {

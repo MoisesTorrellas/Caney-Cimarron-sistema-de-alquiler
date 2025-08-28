@@ -80,11 +80,19 @@ class gestionarBien extends datos{
 			try {
 					$co->query("Update bienes set 
                     codBien = '$this->codBien',
-                    nomBien = '$this->nomBien',
                     cantBien = '$this->cantBien'
 						where
 						codBien = '$this->codBien'
 						");
+
+						if(!$this->existeNombre($this->nomBien)){
+							$co->query("Update bienes set 
+							nomBien = '$this->nomBien'
+								where
+								codBien = '$this->codBien'
+								");
+							}
+						
 						$r['resultado'] = 'modificar';
 			            $r['mensaje'] =  'Bienes Modificados';
 			} catch(Exception $e) {
@@ -184,6 +192,29 @@ class gestionarBien extends datos{
 		try{
 			
 			$resultado = $co->query("Select * from bienes where codBien='$codBien'");
+			
+			
+			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
+			if($fila){
+
+				return true;
+			    
+			}
+			else{
+				
+				return false;;
+			}
+			
+		}catch(Exception $e){
+			return false;
+		}
+	}
+	private function existeNombre($nomBien){
+		$co = $this->conecta();
+		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		try{
+			
+			$resultado = $co->query("Select * from bienes where nomBien='$nomBien'");
 			
 			
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);

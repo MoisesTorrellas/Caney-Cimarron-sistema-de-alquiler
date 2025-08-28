@@ -15,7 +15,11 @@ require_once("modelo/".$pagina.".php");
 
 		$accion = $_POST['accion'];
 
-    	if($accion=='consultaCliente'){
+		if($accion=='consultar'){
+			echo  json_encode($o->consultar());  
+		}
+
+    	else if($accion=='consultaCliente'){
 			$o->set_busquedaCliente($_POST['busquedaCliente']);
 			echo  json_encode($o->consultaCliente());  
 		}
@@ -30,6 +34,10 @@ require_once("modelo/".$pagina.".php");
 			$o->set_busqueda($_POST['busqueda']);
 			echo  json_encode($o->consultaTrabajador());  
 		} 
+		else if($accion=='eliminar'){
+			$o->set_numAlquiler($_POST['numAlquiler']);
+			echo  json_encode($o->eliminar());
+		}
 		else{	
 			$o->set_numAlquiler($_POST['numAlquiler']);  
             $o->set_fechaAlquiler($_POST['fechaAlquiler']);

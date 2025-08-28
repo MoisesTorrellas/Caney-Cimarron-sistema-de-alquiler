@@ -157,7 +157,7 @@ class gestionarCliente extends datos{
 		$r = array();
 		try{
 			
-			$resultado= $co->query("Select * from Cliente where cedulaCliente like '%$this->busqueda%' 
+			$resultado= $co->query("Select * from cliente where cedulaCliente like '%$this->busqueda%' 
 									or nombreCliente like '%$this->busqueda%'
 									or apellidoCliente like '%$this->busqueda%'
 									or direccionCliente like '%$this->busqueda%'

@@ -1,0 +1,1 @@
+SELECT alquiler.*, cliente.nombreCliente, cliente.apellidoCliente, area.nombreArea FROM alquiler INNER JOIN cliente ON alquiler.cedulaCliente = cliente.cedulaCliente INNER JOIN asignararea ON alquiler.numAlquiler = asignararea.numAlquiler INNER JOIN area ON asignararea.numArea = area.numArea;

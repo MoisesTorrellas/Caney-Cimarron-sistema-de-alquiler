@@ -1,11 +1,11 @@
-let cerrar = document.querySelectorAll(".closes")[0];
-let modal = document.querySelectorAll(".modal2")[0];
-let modalc = document.querySelectorAll(".modal-contenedor")[0];
-let titulo= document.querySelectorAll(".titulo")[0];
-let botonNav = document.querySelectorAll(".boton-nav-hijo")[0];
+var cerrar = document.querySelectorAll(".closes")[0];
+var modal = document.querySelectorAll(".modal2")[0];
+var modalc = document.querySelectorAll(".modal-contenedor")[0];
+var titulo= document.querySelectorAll(".titulo")[0];
+var botonNav = document.querySelectorAll(".boton-nav-hijo")[2];
 document.getElementById("busqueda").addEventListener("keyup", consultar);
-let botonMenu = document.querySelector('.bMenu');
-let menu = document.querySelector('.barraLateral');
+var botonMenu = document.querySelector('.bMenu');
+var menu = document.querySelector('.barraLateral');
 
 $(botonMenu).on("click", function () {
 	menu.classList.toggle("menuShow")
@@ -228,19 +228,7 @@ function pone(pos,accion){
 	
 }
 
-function muestraMensaje(icono, tiempo, titulo, mensaje) {
 
-	Swal.fire({
-		icon: icono,
-		timer: tiempo,
-		title: titulo,
-		html: mensaje,
-		showConfirmButton: true,
-		confirmButtonText: 'Aceptar',
-	});
-
-
-}
 //ENVIO POR AJAX
 
 function enviaAjax(datos) {
